@@ -81,14 +81,13 @@
 		09E4E24D282BEC6300FBA86D /* SportsApplication */ = {
 			isa = PBXGroup;
 			children = (
+				09E4E278282C2F3A00FBA86D /* Module */,
+				09E4E277282C2F0D00FBA86D /* View */,
+				09E4E274282C2ECE00FBA86D /* Model */,
 				09E4E24E282BEC6300FBA86D /* AppDelegate.swift */,
 				09E4E250282BEC6300FBA86D /* SceneDelegate.swift */,
-				09E4E252282BEC6300FBA86D /* ViewController.swift */,
-				09E4E254282BEC6300FBA86D /* Main.storyboard */,
 				09E4E25A282BEC7300FBA86D /* Assets.xcassets */,
-				09E4E25C282BEC7400FBA86D /* LaunchScreen.storyboard */,
 				09E4E25F282BEC7400FBA86D /* Info.plist */,
-				09E4E257282BEC6300FBA86D /* SportsApplication.xcdatamodeld */,
 			);
 			path = SportsApplication;
 			sourceTree = "<group>";
@@ -100,6 +99,47 @@
 				09E4E26A282BEC7400FBA86D /* Info.plist */,
 			);
 			path = SportsApplicationTests;
+			sourceTree = "<group>";
+		};
+		09E4E274282C2ECE00FBA86D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				09E4E276282C2EEA00FBA86D /* Local */,
+				09E4E275282C2EE000FBA86D /* Remote */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		09E4E275282C2EE000FBA86D /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		09E4E276282C2EEA00FBA86D /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				09E4E257282BEC6300FBA86D /* SportsApplication.xcdatamodeld */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		09E4E277282C2F0D00FBA86D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				09E4E25C282BEC7400FBA86D /* LaunchScreen.storyboard */,
+				09E4E254282BEC6300FBA86D /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		09E4E278282C2F3A00FBA86D /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				09E4E252282BEC6300FBA86D /* ViewController.swift */,
+			);
+			path = Module;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
