@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import Alamofire
+import Kingfisher
 
-class SportsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class SportsViewController: UIViewController{
+    //  object of presenter
+    var presenter : SportsPresenterProtocol!
+    //  response result array from network
+    var responseResultArray  : [Sport] = []
     
     @IBOutlet weak var sportsCollection: UICollectionView!
     
@@ -16,26 +22,38 @@ class SportsViewController: UIViewController, UICollectionViewDelegate, UICollec
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //  collection view conforming protocols
         self.sportsCollection.delegate = self
         self.sportsCollection.dataSource = self
         
-         layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        
+        //  collection view (UI)
+        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)    //  margin
         sportsCollection!.collectionViewLayout = layout
         
+        //  variables initializations
+        presenter = SportsPresenter(networkService: NetworkManager.delegate, view: self)
+        presenter.getSportsListItems(urlID: 0)
     }
+}
+
+
+extension SportsViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return 6
+        if(responseResultArray.count != 0){
+            print("Array Count : \(responseResultArray.count)")
+            return responseResultArray.count
+        }
+        return 0
        }
        
-       func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
         
-        cell.sportThumb.image = UIImage(named: "sports-2.png")
-        cell.sportName.text = "Soccer"
+        let imageURL = URL(string: responseResultArray[indexPath.row].strSportThumb ?? "")
+        cell.sportThumb.kf.setImage(with: imageURL)
+        cell.sportName.text = responseResultArray[indexPath.row].strSport
         cell.sportName.textColor = UIColor.white
         
         cell.contentView.layer.cornerRadius = 15.0
@@ -56,3 +74,11 @@ class SportsViewController: UIViewController, UICollectionViewDelegate, UICollec
        }
 }
 
+
+extension SportsViewController : SportsViewControllerProtocol{
+    func renderCollectionViewFromNetwork(response : Any){
+        responseResultArray = (response as! SportsResponse).sports
+        print("Sport Name: \(responseResultArray[0].strSport ?? "No Sport Name")")
+        self.sportsCollection.reloadData()
+    }
+}
