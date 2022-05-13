@@ -21,6 +21,7 @@ class NetworkManagerTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
+    //all sports
     func testfetchSportsList(){
         let expectationOject = expectation(description: "Waiting for the response")
         networkDelegate.fetchSportsList(urlID: 0){(result, error) -> Void in
@@ -34,4 +35,19 @@ class NetworkManagerTests: XCTestCase {
        }
        waitForExpectations(timeout: 5, handler: nil)
    }
+    
+    //all countires
+    func testfetchCountriesList(){
+          let expectationOject = expectation(description: "Waiting for the response")
+          networkDelegate.fetchSportsList(urlID: 1){(result, error) -> Void in
+              guard let countries = (result as? CountriesResponse)?.countries else{
+                  XCTFail()
+                  expectationOject.fulfill()
+                  return
+              }
+              XCTAssertEqual(countries.count, 257, "error in API items' count") // true : 257
+              expectationOject.fulfill()
+         }
+         waitForExpectations(timeout: 5, handler: nil)
+     }
 }

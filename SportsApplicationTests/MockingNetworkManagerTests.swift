@@ -19,6 +19,7 @@ class MockingNetworkManagerTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
+    //test for all sports list
     func testfetchSportsList(){
         mockObject.fetchSportsList(urlID: 0) { (sports, error) in
             guard let sports = (sports as? SportsResponse)?.sports else{
@@ -26,6 +27,17 @@ class MockingNetworkManagerTests: XCTestCase {
                 return
             }
             XCTAssertEqual(sports.count, 34, "API failed")
+        }
+    }
+    
+    //test for all countries list
+    func testfetchCountriesList(){
+        mockObject.fetchSportsList(urlID: 1) { (countries, error) in
+            guard let countries = (countries as? CountriesResponse)?.countries else{
+                XCTFail()
+                return
+            }
+            XCTAssertEqual(sports.count, 257, "API failed")
         }
     }
 }

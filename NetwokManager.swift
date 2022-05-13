@@ -14,7 +14,8 @@ class NetworkManager : NetworkManagerProtocol{
     static let delegate = NetworkManager()
     // urls[0]: all sports url
     let urls = [
-        "https://www.thesportsdb.com/api/v1/json/2/all_sports.php"
+        "https://www.thesportsdb.com/api/v1/json/2/all_sports.php",
+        "https://www.thesportsdb.com/api/v1/json/2/all_countries.php"
     ]
     
     func fetchSportsList(urlID :Int , complitionHandler: @escaping (Any?, Error?) -> Void){
@@ -38,6 +39,9 @@ class NetworkManager : NetworkManagerProtocol{
                     print("Data from fetching sports list : \n \(info)")
                     break
                 case 1:
+                    let info = try decoder.decode(CountriesResponse.self, from: data)
+                    complitionHandler(info, nil)
+                    print("Data from fetching countries list : \n \(info)")
                     break
                 default:
                     print("request url not true")

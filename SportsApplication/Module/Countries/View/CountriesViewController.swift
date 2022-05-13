@@ -9,6 +9,11 @@
 import UIKit
 
 class CountriesViewController: UIViewController {
+    
+    //  object of presenter
+       var presenter : CountriesPresenterProtocol!
+       //  response result array from network
+       var responseResultArray  : [Country] = []
 
     @IBOutlet weak var countriesCollection: UICollectionView!
     
@@ -20,34 +25,30 @@ class CountriesViewController: UIViewController {
         self.countriesCollection.delegate = self
         self.countriesCollection.dataSource = self
         
+        //  variables initializations
+        presenter = CountriesPresenter(networkService: NetworkManager.delegate, view: self)
+        presenter.getCountriesListItems(urlID: 1)
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension CountriesViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 6
-        
+        if(responseResultArray.count != 0){
+            print("Country Array Count : \(responseResultArray.count)")
+            return responseResultArray.count
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CountryCollectionViewCell
         
-        cell.countryName.text = "Egypt"
+        cell.countryName.text = responseResultArray[indexPath.row].name_en
         cell.countryName.textColor = UIColor.black
         
         cell.contentView.layer.cornerRadius = 15.0
@@ -64,14 +65,21 @@ extension CountriesViewController : UICollectionViewDelegate, UICollectionViewDa
         
         let padding: CGFloat =  25
                   let collectionViewSize = collectionView.frame.size.width - padding
-                  return CGSize(width: collectionViewSize, height: 100)
+                  return CGSize(width: collectionViewSize/1, height: 100)
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
+        
+        print(responseResultArray[indexPath.row].name_en ?? "no name")
         
     }
-    
-    
+}
+
+extension CountriesViewController : CountriesViewControllerProtocol{
+    func renderCountriesCollectionViewFromNetwork(response : Any){
+        responseResultArray = (response as! CountriesResponse).countries
+        print("Country Name: \(responseResultArray[0].name_en ?? "No country Name")")
+        self.countriesCollection.reloadData()
+    }
 }

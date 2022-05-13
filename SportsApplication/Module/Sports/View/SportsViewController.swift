@@ -74,17 +74,25 @@ extension SportsViewController : UICollectionViewDelegate, UICollectionViewDataS
            
        }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let countriesViewController : CountriesViewController = self.storyboard?.instantiateViewController(withIdentifier: "go_to_countries") as! CountriesViewController
+        //let countriesViewController : CountriesViewController = segue.destination as! CountriesViewController
+        print("country Screen \(countriesViewController != nil)")
+        countriesViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        //self.navigationController?.pushViewController(countriesViewController, animated: true)
+        self.present(countriesViewController, animated: true)
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         print(responseResultArray[indexPath.row].strSport ?? "no name")
         
 
-        let countriesViewController : CountriesViewController = self.storyboard?.instantiateViewController(withIdentifier: "go_to_countries") as! CountriesViewController
-        
-        countriesViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        
-        self.navigationController?.pushViewController(countriesViewController, animated: true)
+//        let countriesViewController : CountriesViewController = self.storyboard?.instantiateViewController(withIdentifier: "go_to_countries") as! CountriesViewController
+//
+//        countriesViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+//
+//        self.navigationController?.pushViewController(countriesViewController, animated: true)
         
         
     }

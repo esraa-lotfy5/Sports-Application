@@ -1,5 +1,5 @@
 //
-//  CountriesProtocol.swift
+//  LeaguesResponse.swift
 //  SportsApplication
 //
 //  Created by nihal yasser khamis on 5/13/22.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol CountriesPresenterProtocol{
-     func getCountriesListItems(urlID : Int)
+class LeaguesResponse : Decodable{
+    var countries : [League]
 }

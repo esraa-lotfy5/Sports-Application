@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+protocol CountriesViewControllerProtocol : AnyObject{
+    func renderCountriesCollectionViewFromNetwork(response : Any)
+}

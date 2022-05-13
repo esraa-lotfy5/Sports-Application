@@ -49,6 +49,7 @@
                                         <connections>
                                             <outlet property="sportName" destination="WFj-JH-IEE" id="UQ5-P1-HOQ"/>
                                             <outlet property="sportThumb" destination="Jt7-vz-Aqw" id="nnZ-rX-SQm"/>
+                                            <segue destination="XeI-Im-sUo" kind="show" id="2vY-TU-80P"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -102,11 +103,11 @@
             <objects>
                 <viewController storyboardIdentifier="go_to_countries" id="XeI-Im-sUo" customClass="CountriesViewController" customModule="SportsApplication" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5sV-KV-fXR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="22t-vO-F1w">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="WV6-VW-ByY">
                                     <size key="itemSize" width="128" height="128"/>
@@ -122,19 +123,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="130" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pav-wC-Zgq">
-                                                    <rect key="frame" x="8" y="54" width="122" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pav-wC-Zgq">
+                                                    <rect key="frame" x="8" y="54" width="122" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Pav-wC-Zgq" firstAttribute="top" secondItem="va5-9p-wxd" secondAttribute="top" constant="54" id="3Q5-8x-Gbc"/>
-                                                <constraint firstAttribute="trailing" secondItem="Pav-wC-Zgq" secondAttribute="trailing" id="7hN-eo-7c8"/>
-                                                <constraint firstAttribute="bottom" secondItem="Pav-wC-Zgq" secondAttribute="bottom" constant="53" id="pyr-bc-fNR"/>
-                                                <constraint firstItem="Pav-wC-Zgq" firstAttribute="leading" secondItem="va5-9p-wxd" secondAttribute="leading" constant="8" id="tSa-XY-IRg"/>
-                                            </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="130" height="128"/>
                                         <connections>
@@ -153,6 +149,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GDa-Bo-uBr"/>
                     </view>
+                    <navigationItem key="navigationItem" id="IhX-XU-PVv"/>
                     <connections>
                         <outlet property="countriesCollection" destination="22t-vO-F1w" id="b78-Wt-B7K"/>
                     </connections>
