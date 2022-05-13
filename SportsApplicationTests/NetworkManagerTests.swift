@@ -22,9 +22,9 @@ class NetworkManagerTests: XCTestCase {
     }
 
     //all sports
-    func testfetchSportsList(){
+    func testFetchSportsList(){
         let expectationOject = expectation(description: "Waiting for the response")
-        networkDelegate.fetchSportsList(urlID: 0){(result, error) -> Void in
+        networkDelegate.fetchLists(urlID: 0, paramerters: [:]){(result, error) -> Void in
             guard let sports = (result as? SportsResponse)?.sports else{
                 XCTFail()
                 expectationOject.fulfill()
@@ -37,9 +37,9 @@ class NetworkManagerTests: XCTestCase {
    }
     
     //all countires
-    func testfetchCountriesList(){
+    func testFetchCountriesList(){
           let expectationOject = expectation(description: "Waiting for the response")
-          networkDelegate.fetchSportsList(urlID: 1){(result, error) -> Void in
+        networkDelegate.fetchLists(urlID: 1, paramerters: [:]){(result, error) -> Void in
               guard let countries = (result as? CountriesResponse)?.countries else{
                   XCTFail()
                   expectationOject.fulfill()
@@ -49,5 +49,20 @@ class NetworkManagerTests: XCTestCase {
               expectationOject.fulfill()
          }
          waitForExpectations(timeout: 5, handler: nil)
+     }
+    
+    //all leagues
+    func testFetchLeaguesList(){
+          let expectationOject = expectation(description: "Waiting for the response")
+        networkDelegate.fetchLists(urlID: 2, paramerters: ["c":"England","s":"Soccer"]){(result, error) -> Void in
+            guard let leagues = (result as? LeaguesResponse)?.countries else{
+                  XCTFail()
+                  expectationOject.fulfill()
+                  return
+              }
+              XCTAssertEqual(leagues.count, 10, "error in API items' count") // true : 10
+              expectationOject.fulfill()
+         }
+         waitForExpectations(timeout: 15, handler: nil)
      }
 }

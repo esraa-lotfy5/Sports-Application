@@ -9,5 +9,5 @@
 import Foundation
 
 protocol NetworkManagerProtocol{
-    func fetchSportsList(urlID :Int, complitionHandler: @escaping (Any?, Error?) -> Void)
+    func fetchLists(urlID :Int, paramerters: [String : String], complitionHandler: @escaping (Any?, Error?) -> Void)
 }

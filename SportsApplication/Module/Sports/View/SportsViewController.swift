@@ -15,6 +15,8 @@ class SportsViewController: UIViewController{
     var presenter : SportsPresenterProtocol!
     //  response result array from network
     var responseResultArray  : [Sport] = []
+    //  selected Sport Name
+    var selectedSportName : String = ""
     
     @IBOutlet weak var sportsCollection: UICollectionView!
     
@@ -41,7 +43,7 @@ extension SportsViewController : UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(responseResultArray.count != 0){
-            print("Array Count : \(responseResultArray.count)")
+            print("From SportsViewController: Array Count : \(responseResultArray.count)")
             return responseResultArray.count
         }
         return 0
@@ -68,42 +70,29 @@ extension SportsViewController : UICollectionViewDelegate, UICollectionViewDataS
                            layout collectionViewLayout: UICollectionViewLayout,
                            sizeForItemAt indexPath: IndexPath) -> CGSize {
          
-           let padding: CGFloat =  25
-           let collectionViewSize = collectionView.frame.size.width - padding
-           return CGSize(width: collectionViewSize/2, height: 115)
+       let padding: CGFloat =  25
+       let collectionViewSize = collectionView.frame.size.width - padding
+       return CGSize(width: collectionViewSize/2, height: 115)
            
-       }
+   }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let countriesViewController : CountriesViewController = self.storyboard?.instantiateViewController(withIdentifier: "go_to_countries") as! CountriesViewController
-        //let countriesViewController : CountriesViewController = segue.destination as! CountriesViewController
-        print("country Screen \(countriesViewController != nil)")
+        
+        let countriesViewController : CountriesViewController = segue.destination as! CountriesViewController
+        //  to get selected cell
+        let cell = sender as! UICollectionViewCell
+        let indexPath = self.sportsCollection!.indexPath(for: cell)
+        countriesViewController.sportNameInCountryViewController = responseResultArray[indexPath?.row ?? -1].strSport ?? ""
         countriesViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        //self.navigationController?.pushViewController(countriesViewController, animated: true)
+        
         self.present(countriesViewController, animated: true)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        print(responseResultArray[indexPath.row].strSport ?? "no name")
-        
-
-//        let countriesViewController : CountriesViewController = self.storyboard?.instantiateViewController(withIdentifier: "go_to_countries") as! CountriesViewController
-//
-//        countriesViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-//
-//        self.navigationController?.pushViewController(countriesViewController, animated: true)
-        
-        
-    }
-    
 }
 
 
 extension SportsViewController : SportsViewControllerProtocol{
     func renderCollectionViewFromNetwork(response : Any){
         responseResultArray = (response as! SportsResponse).sports
-        print("Sport Name: \(responseResultArray[0].strSport ?? "No Sport Name")")
         self.sportsCollection.reloadData()
     }
 }

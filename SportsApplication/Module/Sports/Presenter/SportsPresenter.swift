@@ -19,12 +19,11 @@ class SportsPresenter : SportsPresenterProtocol{
     }
     
     func getSportsListItems(urlID : Int){
-        networkManager.fetchSportsList(urlID: urlID){[weak self] (result,error)  in
+        networkManager.fetchLists(urlID: urlID, paramerters: [:]){[weak self] (result,error)  in
             guard result != nil else{
                 print("From All sports presenter: Response = nil")
                 return
             }
-            //self?.responseResult = result
             self?.view.renderCollectionViewFromNetwork(response: result!)
         }
     }

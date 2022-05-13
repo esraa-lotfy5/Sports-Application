@@ -13,13 +13,19 @@ class NetworkManager : NetworkManagerProtocol{
     private init(){}
     static let delegate = NetworkManager()
     // urls[0]: all sports url
+    // urls[1]: all countries
+    // urls[2]: all leagues
     let urls = [
         "https://www.thesportsdb.com/api/v1/json/2/all_sports.php",
-        "https://www.thesportsdb.com/api/v1/json/2/all_countries.php"
-    ]
+        "https://www.thesportsdb.com/api/v1/json/2/all_countries.php",
+        "https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?"
+        ]
+    //"https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?c=England&s=Soccer"
     
-    func fetchSportsList(urlID :Int , complitionHandler: @escaping (Any?, Error?) -> Void){
-        Alamofire.request(urls[urlID]).responseJSON{ response in
+    //  for fetching -> AllSportsList, AllCountriesList, LeaguesList
+    func fetchLists(urlID :Int , paramerters: [String : String], complitionHandler: @escaping (Any?, Error?) -> Void){
+        
+        Alamofire.request(urls[urlID], parameters: paramerters).responseJSON{ response in
             //  if error occured
             if response.error != nil{
                 print("Error in fetching sports list : \(response.error!)")
@@ -36,13 +42,16 @@ class NetworkManager : NetworkManagerProtocol{
                 case 0:
                     let info = try decoder.decode(SportsResponse.self, from: data)
                     complitionHandler(info, nil)
-                    print("Data from fetching sports list : \n \(info)")
+                    //print("Data from fetching sports list : \n \(info)")
                     break
                 case 1:
                     let info = try decoder.decode(CountriesResponse.self, from: data)
                     complitionHandler(info, nil)
-                    print("Data from fetching countries list : \n \(info)")
+                    //print("Data from fetching countries list : \n \(info)")
                     break
+                case 2:
+                    let info = try decoder.decode(LeaguesResponse.self, from: data)
+                    complitionHandler(info, nil)
                 default:
                     print("request url not true")
                     break
@@ -51,6 +60,8 @@ class NetworkManager : NetworkManagerProtocol{
             } catch {
                 print("Error : \(error)")
             }
-            debugPrint(response)}
+            //debugPrint(response)
+            
+        }
     }
 }

@@ -20,24 +20,36 @@ class MockingNetworkManagerTests: XCTestCase {
     }
 
     //test for all sports list
-    func testfetchSportsList(){
-        mockObject.fetchSportsList(urlID: 0) { (sports, error) in
+    func testFetchSportsList(){
+        mockObject.fetchLists(urlID: 0, paramerters: [:]) { (sports, error) in
             guard let sports = (sports as? SportsResponse)?.sports else{
                 XCTFail()
                 return
             }
-            XCTAssertEqual(sports.count, 34, "API failed")
+            XCTAssertEqual(sports.count, 34, "API failed") //true: 43
         }
     }
     
     //test for all countries list
-    func testfetchCountriesList(){
-        mockObject.fetchSportsList(urlID: 1) { (countries, error) in
+    func testFetchCountriesList(){
+        mockObject.fetchLists(urlID: 1, paramerters: [:]) { (countries, error) in
             guard let countries = (countries as? CountriesResponse)?.countries else{
                 XCTFail()
                 return
             }
-            XCTAssertEqual(sports.count, 257, "API failed")
+            XCTAssertEqual(countries.count, 257, "API failed") //true: 257
         }
     }
+    
+    //test for all leagues list
+   func testFetchLeaguesList(){
+    mockObject.fetchLists(urlID: 2, paramerters: ["c":"England" , "s":"Soccer"]) { (leagues, error) in
+           guard let leagues = (leagues as? LeaguesResponse)?.countries else{
+               XCTFail()
+               return
+           }
+        print("leagues.count = \(leagues.count)")
+           XCTAssertEqual(leagues.count, 10, "API failed") //true: 10
+       }
+   }
 }

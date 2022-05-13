@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09122312282EBAAA0040A84C /* LeaguesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09122311282EBAAA0040A84C /* LeaguesPresenter.swift */; };
+		09122314282EBABB0040A84C /* LeaguesPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09122313282EBABB0040A84C /* LeaguesPresenterProtocol.swift */; };
+		09122316282EBC680040A84C /* LeaguesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09122315282EBC680040A84C /* LeaguesViewController.swift */; };
+		09122318282EBC840040A84C /* LeaguesViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09122317282EBC840040A84C /* LeaguesViewControllerProtocol.swift */; };
+		0912231A282EBCCF0040A84C /* LeaguesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09122319282EBCCF0040A84C /* LeaguesCollectionViewCell.swift */; };
 		092EC337282DECE9000412B0 /* MockingNetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092EC336282DECE9000412B0 /* MockingNetworkManagerTests.swift */; };
 		092EC339282DED69000412B0 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092EC338282DED69000412B0 /* MockNetworkManager.swift */; };
 		09B72FE8282DCFA900B86DE1 /* NetwokManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B72FE7282DCFA900B86DE1 /* NetwokManager.swift */; };
@@ -50,6 +55,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09122311282EBAAA0040A84C /* LeaguesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesPresenter.swift; sourceTree = "<group>"; };
+		09122313282EBABB0040A84C /* LeaguesPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesPresenterProtocol.swift; sourceTree = "<group>"; };
+		09122315282EBC680040A84C /* LeaguesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesViewController.swift; sourceTree = "<group>"; };
+		09122317282EBC840040A84C /* LeaguesViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesViewControllerProtocol.swift; sourceTree = "<group>"; };
+		09122319282EBCCF0040A84C /* LeaguesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesCollectionViewCell.swift; sourceTree = "<group>"; };
 		092EC336282DECE9000412B0 /* MockingNetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockingNetworkManagerTests.swift; sourceTree = "<group>"; };
 		092EC338282DED69000412B0 /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
 		09B72FE7282DCFA900B86DE1 /* NetwokManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetwokManager.swift; sourceTree = SOURCE_ROOT; };
@@ -110,6 +120,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0912230E282EBA360040A84C /* Leagues */ = {
+			isa = PBXGroup;
+			children = (
+				09122310282EBA510040A84C /* View */,
+				0912230F282EBA450040A84C /* Presenter */,
+			);
+			path = Leagues;
+			sourceTree = "<group>";
+		};
+		0912230F282EBA450040A84C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				09122311282EBAAA0040A84C /* LeaguesPresenter.swift */,
+				09122313282EBABB0040A84C /* LeaguesPresenterProtocol.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		09122310282EBA510040A84C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				09122315282EBC680040A84C /* LeaguesViewController.swift */,
+				09122317282EBC840040A84C /* LeaguesViewControllerProtocol.swift */,
+				09122319282EBCCF0040A84C /* LeaguesCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		09D4B316282DB883002C53F7 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +247,7 @@
 		09E4E278282C2F3A00FBA86D /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				0912230E282EBA360040A84C /* Leagues */,
 				A09DD41A282E7C7200B37333 /* Countries */,
 				A0CF1C89282C48AE00E3D633 /* FavouriteLeagues */,
 				A0CF1C84282C444B00E3D633 /* Sports */,
@@ -484,6 +523,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0CF1C88282C45A000E3D633 /* SportsPresenter.swift in Sources */,
+				0912231A282EBCCF0040A84C /* LeaguesCollectionViewCell.swift in Sources */,
 				09B72FEE282DD09200B86DE1 /* SportsResponse.swift in Sources */,
 				A09DD426282E80A500B37333 /* CountryCollectionViewCell.swift in Sources */,
 				09B72FEC282DD07B00B86DE1 /* Sport.swift in Sources */,
@@ -494,16 +534,20 @@
 				A09DD42A282E979000B37333 /* Country.swift in Sources */,
 				09B72FE8282DCFA900B86DE1 /* NetwokManager.swift in Sources */,
 				A09DD420282E7D1A00B37333 /* CountriesPresenter.swift in Sources */,
+				09122316282EBC680040A84C /* LeaguesViewController.swift in Sources */,
 				A09DD422282E7D9500B37333 /* CountriesViewController.swift in Sources */,
 				09E4E259282BEC6300FBA86D /* SportsApplication.xcdatamodeld in Sources */,
+				09122312282EBAAA0040A84C /* LeaguesPresenter.swift in Sources */,
 				A09DD428282E973F00B37333 /* CountriesResponse.swift in Sources */,
 				09B72FF0282DD3F300B86DE1 /* SportsViewControllerProtocol.swift in Sources */,
 				A09DD41E282E7CE400B37333 /* CountriesPresenterProtocol.swift in Sources */,
 				09E4E24F282BEC6300FBA86D /* AppDelegate.swift in Sources */,
 				A09DD424282E7DB600B37333 /* CountriesViewControllerProtocol.swift in Sources */,
 				A09DD42D282EA8D600B37333 /* LeaguesResponse.swift in Sources */,
+				09122318282EBC840040A84C /* LeaguesViewControllerProtocol.swift in Sources */,
 				09B72FEA282DCFBE00B86DE1 /* NetworkManagerProtocol.swift in Sources */,
 				09E4E251282BEC6300FBA86D /* SceneDelegate.swift in Sources */,
+				09122314282EBABB0040A84C /* LeaguesPresenterProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,9 +11,13 @@ import UIKit
 class CountriesViewController: UIViewController {
     
     //  object of presenter
-       var presenter : CountriesPresenterProtocol!
-       //  response result array from network
-       var responseResultArray  : [Country] = []
+    var presenter : CountriesPresenterProtocol!
+    //  response result array from network
+    var responseResultArray  : [Country] = []
+    //  sport name
+    var sportNameInCountryViewController : String = ""
+    //  selected country name
+    var selectedCountryName : String = ""
 
     @IBOutlet weak var countriesCollection: UICollectionView!
     
@@ -28,9 +32,7 @@ class CountriesViewController: UIViewController {
         //  variables initializations
         presenter = CountriesPresenter(networkService: NetworkManager.delegate, view: self)
         presenter.getCountriesListItems(urlID: 1)
-        
     }
-    
 }
 
 extension CountriesViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -38,7 +40,7 @@ extension CountriesViewController : UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if(responseResultArray.count != 0){
-            print("Country Array Count : \(responseResultArray.count)")
+            print("From CountriesViewController: Country Array Count : \(responseResultArray.count)")
             return responseResultArray.count
         }
         return 0
@@ -55,7 +57,7 @@ extension CountriesViewController : UICollectionViewDelegate, UICollectionViewDa
         cell.contentView.layer.borderWidth = 1.0
         cell.contentView.layer.borderColor = UIColor.black.cgColor
         
-                return cell
+        return cell
         
     }
     
@@ -64,22 +66,25 @@ extension CountriesViewController : UICollectionViewDelegate, UICollectionViewDa
     sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let padding: CGFloat =  25
-                  let collectionViewSize = collectionView.frame.size.width - padding
-                  return CGSize(width: collectionViewSize/1, height: 100)
-        
+        let collectionViewSize = collectionView.frame.size.width - padding
+        return CGSize(width: collectionViewSize/1, height: 100)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        print(responseResultArray[indexPath.row].name_en ?? "no name")
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        let leaguesViewController : LeaguesViewController = segue.destination as! LeaguesViewController
+        //  to get selected cell
+        let cell = sender as! UICollectionViewCell
+        let indexPath = self.countriesCollection!.indexPath(for: cell)
+        leaguesViewController.sportName = sportNameInCountryViewController
+        leaguesViewController.countryName = responseResultArray[indexPath?.row ?? -1].name_en ?? ""
+        leaguesViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
     }
 }
 
 extension CountriesViewController : CountriesViewControllerProtocol{
     func renderCountriesCollectionViewFromNetwork(response : Any){
         responseResultArray = (response as! CountriesResponse).countries
-        print("Country Name: \(responseResultArray[0].name_en ?? "No country Name")")
         self.countriesCollection.reloadData()
     }
 }
