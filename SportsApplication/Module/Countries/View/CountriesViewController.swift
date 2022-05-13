@@ -24,8 +24,6 @@ class CountriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("inside countries")
-
         self.countriesCollection.delegate = self
         self.countriesCollection.dataSource = self
         

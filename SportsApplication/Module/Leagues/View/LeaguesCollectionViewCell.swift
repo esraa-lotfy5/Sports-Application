@@ -10,4 +10,8 @@ import UIKit
 
 class LeaguesCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var youtubeImage: UIImageView!
+    @IBOutlet weak var leagugeImage: UIImageView!
+    @IBOutlet weak var leagueNameLabel: UILabel!
+    
 }
