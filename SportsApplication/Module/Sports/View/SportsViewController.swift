@@ -54,7 +54,8 @@ extension SportsViewController : UICollectionViewDelegate, UICollectionViewDataS
         let imageURL = URL(string: responseResultArray[indexPath.row].strSportThumb ?? "")
         cell.sportThumb.kf.setImage(with: imageURL)
         cell.sportName.text = responseResultArray[indexPath.row].strSport
-        cell.sportName.textColor = UIColor.white
+    
+        cell.sportName.textColor = UIColor.black
         
         cell.contentView.layer.cornerRadius = 15.0
         cell.contentView.layer.borderWidth = 1.0
@@ -72,6 +73,22 @@ extension SportsViewController : UICollectionViewDelegate, UICollectionViewDataS
            return CGSize(width: collectionViewSize/2, height: 115)
            
        }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        print(responseResultArray[indexPath.row].strSport ?? "no name")
+        
+
+        let countriesViewController : CountriesViewController = self.storyboard?.instantiateViewController(withIdentifier: "go_to_countries") as! CountriesViewController
+        
+        countriesViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        
+        self.navigationController?.pushViewController(countriesViewController, animated: true)
+        
+        
+    }
+    
 }
 
 
