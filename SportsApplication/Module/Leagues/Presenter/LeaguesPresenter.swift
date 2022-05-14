@@ -18,13 +18,13 @@ class LeaguesPresenter : LeaguesPresenterProtocol{
         self.view = view
     }
     
-    func getSportsListItems(urlID : Int, parameteres: [String : String]){
-        networkManager.fetchLists(urlID: urlID, paramerters: parameteres){[weak self] (result,error)  in
+    func getLeaguesListItems(urlID : Int, parameteres: [String : String]){
+        networkManager.fetchLists(urlID: urlID, paramerters: parameteres){[weak self] (result,error,isCountriesEqualNull)  in
             guard result != nil else{
                 print("From All leagues presenter: Response = nil")
                 return
             }
-            self?.view.renderCollectionViewFromNetwork(response: result!)
+            self?.view.renderCollectionViewFromNetwork(response: result!, isCountriesEqualNull: isCountriesEqualNull)
         }
     }
 }

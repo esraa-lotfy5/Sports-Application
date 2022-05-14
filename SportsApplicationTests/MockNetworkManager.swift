@@ -36,7 +36,6 @@ class MockNetworkManager {
 extension MockNetworkManager : NetworkManagerProtocol{
 
     func fetchLists(urlID: Int, paramerters: [String : String], complitionHandler: @escaping (Any?, Error?) -> Void) {
-            //let json = try JSONSerialization.data(withJSONObject: mockItemsJSONResponse)
             switch(urlID){
             case 0:
                 do{

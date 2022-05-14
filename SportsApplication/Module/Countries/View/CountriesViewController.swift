@@ -76,6 +76,7 @@ extension CountriesViewController : UICollectionViewDelegate, UICollectionViewDa
         let indexPath = self.countriesCollection!.indexPath(for: cell)
         leaguesViewController.sportName = sportNameInCountryViewController
         leaguesViewController.countryName = responseResultArray[indexPath?.row ?? -1].name_en ?? ""
+        leaguesViewController.favLeagues = false
         leaguesViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
     }
 }

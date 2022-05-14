@@ -159,16 +159,16 @@
             </objects>
             <point key="canvasLocation" x="-488.40579710144931" y="1524.7767857142856"/>
         </scene>
-        <!--Leagues View Controller-->
+        <!--Favourites-->
         <scene sceneID="h4F-eY-clM">
             <objects>
                 <viewController storyboardIdentifier="go_to_leagues" id="Z3w-Fx-quq" customClass="LeaguesViewController" customModule="SportsApplication" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Ou-Lx-MST">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="g8a-Z1-4aL">
-                                <rect key="frame" x="16" y="90" width="382" height="702"/>
+                                <rect key="frame" x="16" y="134" width="382" height="663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tEg-eE-ooc">
                                     <size key="itemSize" width="382" height="104"/>
@@ -176,22 +176,30 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <imageView key="backgroundView" hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch-screen-background" id="Raq-i1-ZN5">
+                                    <rect key="frame" x="0.0" y="0.0" width="382" height="663"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="LUX-x8-dGm" customClass="LeaguesCollectionViewCell" customModule="SportsApplication" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="104"/>
+                                        <rect key="frame" x="16" y="0.0" width="350" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Wtk-oa-ODZ" customClass="LeaguesCollectionViewCell" customModule="SportsApplication" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="382" height="104"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KVP-uh-S2G">
-                                                    <rect key="frame" x="0.0" y="0.0" width="104" height="104"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="70" id="dKw-sC-dnH"/>
+                                                        <constraint firstAttribute="width" constant="70" id="euQ-qP-Ig6"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="youtubeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="M5X-MW-bNx">
-                                                    <rect key="frame" x="328" y="15.5" width="38" height="73"/>
+                                                    <rect key="frame" x="299" y="10.5" width="35.000000000000057" height="49.000000000000057"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="League" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSl-Id-QmD">
-                                                    <rect key="frame" x="112" y="41" width="208" height="22"/>
+                                                    <rect key="frame" x="78" y="24" width="213" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -204,15 +212,13 @@
                                                 <constraint firstItem="vSl-Id-QmD" firstAttribute="centerY" secondItem="Wtk-oa-ODZ" secondAttribute="centerY" id="HLm-q3-7nT"/>
                                                 <constraint firstItem="vSl-Id-QmD" firstAttribute="leading" secondItem="KVP-uh-S2G" secondAttribute="trailing" constant="8" id="KKL-hA-aLo"/>
                                                 <constraint firstItem="M5X-MW-bNx" firstAttribute="leading" secondItem="vSl-Id-QmD" secondAttribute="trailing" constant="8" id="KpD-2A-F7o"/>
-                                                <constraint firstItem="KVP-uh-S2G" firstAttribute="height" secondItem="Wtk-oa-ODZ" secondAttribute="height" id="Qtr-J4-zqq"/>
                                                 <constraint firstAttribute="trailing" secondItem="M5X-MW-bNx" secondAttribute="trailing" constant="16" id="R5c-eh-vh0"/>
                                                 <constraint firstItem="M5X-MW-bNx" firstAttribute="height" secondItem="Wtk-oa-ODZ" secondAttribute="height" multiplier="3.5:5" id="XIV-US-Awa"/>
-                                                <constraint firstItem="KVP-uh-S2G" firstAttribute="centerY" secondItem="Wtk-oa-ODZ" secondAttribute="centerY" id="k0f-5Y-4BL"/>
+                                                <constraint firstItem="KVP-uh-S2G" firstAttribute="centerY" secondItem="Wtk-oa-ODZ" secondAttribute="centerY" id="up8-U2-EKG"/>
                                                 <constraint firstItem="M5X-MW-bNx" firstAttribute="width" secondItem="Wtk-oa-ODZ" secondAttribute="width" multiplier="0.5:5" id="vi8-5a-3aa"/>
-                                                <constraint firstItem="KVP-uh-S2G" firstAttribute="width" secondItem="Wtk-oa-ODZ" secondAttribute="height" multiplier="1:1" id="yWI-m2-G9X"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="382" height="104"/>
+                                        <size key="customSize" width="350" height="70"/>
                                         <connections>
                                             <outlet property="leagueNameLabel" destination="vSl-Id-QmD" id="XiN-gm-wLG"/>
                                             <outlet property="leagugeImage" destination="KVP-uh-S2G" id="ZeL-sl-qzv"/>
@@ -222,13 +228,13 @@
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sport" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYs-Xq-NY7">
-                                <rect key="frame" x="182" y="32" width="50" height="26"/>
+                                <rect key="frame" x="182" y="76" width="50" height="26"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dnl-k0-o9A">
-                                <rect key="frame" x="16" y="32" width="70" height="29.5"/>
+                                <rect key="frame" x="16" y="76" width="70" height="29.5"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Button" image="lessthan" catalog="system"/>
                                 <connections>
@@ -250,15 +256,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="W4x-Nt-GxM"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Favourites" image="heart" catalog="system" id="r6N-HY-IHD"/>
                     <navigationItem key="navigationItem" id="ijD-vf-auy"/>
                     <connections>
                         <outlet property="leaguesCollection" destination="g8a-Z1-4aL" id="9GY-b4-wjm"/>
+                        <outlet property="noLeaguesImage" destination="Raq-i1-ZN5" id="B3S-js-DNn"/>
                         <outlet property="sportLabel" destination="CYs-Xq-NY7" id="mdi-Pr-8HY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wwc-S2-yS9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-488.40579710144931" y="2234.5982142857142"/>
+            <point key="canvasLocation" x="845" y="2267"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="vf5-yl-ldz">
@@ -272,7 +280,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="83U-oe-XXZ"/>
-                        <segue destination="dY0-02-ikR" kind="relationship" relationship="viewControllers" id="uyc-R5-Zq3"/>
+                        <segue destination="Z3w-Fx-quq" kind="relationship" relationship="viewControllers" id="Ybf-Cn-nnI"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XyX-uZ-jnK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -282,8 +290,12 @@
     </scenes>
     <resources>
         <image name="heart" catalog="system" width="64" height="58"/>
+        <image name="launch-screen-background" width="800" height="529"/>
         <image name="lessthan" catalog="system" width="64" height="54"/>
         <image name="sport" width="24" height="24"/>
         <image name="youtubeIcon" width="206" height="206"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Ybf-Cn-nnI"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -9,5 +9,5 @@
 import Foundation
 
 protocol LeaguesPresenterProtocol {
-    func getSportsListItems(urlID : Int, parameteres: [String : String])
+    func getLeaguesListItems(urlID : Int, parameteres: [String : String])
 }

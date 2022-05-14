@@ -18,7 +18,10 @@ class LeaguesViewController: UIViewController {
     var sportName : String = ""
     var countryName : String = ""
     
+    var favLeagues : Bool = true
+    
     @IBOutlet weak var sportLabel: UILabel!
+    @IBOutlet weak var noLeaguesImage: UIImageView!
     @IBOutlet weak var leaguesCollection: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,16 +37,18 @@ class LeaguesViewController: UIViewController {
         
         //  variables initializations
         presenter = LeaguesPresenter(networkService: NetworkManager.delegate, view: self)
-        let parameters = ["c":countryName , "s":sportName]
-        print("parameters: \(parameters)")
-        presenter.getSportsListItems(urlID: 2, parameteres: parameters)
+        if(favLeagues){
+            print("You are in favourite leagues tab")
+        }else{
+            let parameters = ["c":countryName , "s":sportName]
+            print("parameters: \(parameters)")
+            presenter.getLeaguesListItems(urlID: 2, parameteres: parameters)
+        }
+        
     }
+    
     @IBAction func backButton(_ sender: UIButton) {
 
-        let countriesViewController : CountriesViewController = self.storyboard?.instantiateViewController(withIdentifier: "go_to_countries") as! CountriesViewController
-        //  to get selected cell
-        countriesViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        countriesViewController.present(countriesViewController, animated: true, completion: nil)
         self.dismiss(animated: true, completion: nil)
     }
 }
@@ -57,6 +62,10 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
             print("From LeaguesViewController: Leagues Array Count : \(responseResultArray.count)")
             //return responseResultArray.count
             return 1
+        }
+        if(responseResultArray.count == 0){
+            print("response array length = 0")
+            noLeaguesImage.isHidden = false
         }
         return 0
     }
@@ -102,9 +111,13 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
 }
 
 extension LeaguesViewController : LeaguesViewControllerProtocol{
-    func renderCollectionViewFromNetwork(response : Any){
-        responseResultArray = (response as! LeaguesResponse).countries
-        print("League Name: \(responseResultArray[0].strLeague ?? "No League Name")")
+    func renderCollectionViewFromNetwork(response : Any ,isCountriesEqualNull : Bool){
+        if(isCountriesEqualNull){
+            _ = (response as! NullReponse)
+            responseResultArray = []
+        }else{
+            responseResultArray = (response as! LeaguesResponse).countries
+        }
         self.leaguesCollection.reloadData()
     }
 }

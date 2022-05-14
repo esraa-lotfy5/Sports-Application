@@ -19,7 +19,7 @@ class SportsPresenter : SportsPresenterProtocol{
     }
     
     func getSportsListItems(urlID : Int){
-        networkManager.fetchLists(urlID: urlID, paramerters: [:]){[weak self] (result,error)  in
+        networkManager.fetchLists(urlID: urlID, paramerters: [:]){[weak self] (result,error,isCountriesEqualNull)  in
             guard result != nil else{
                 print("From All sports presenter: Response = nil")
                 return
