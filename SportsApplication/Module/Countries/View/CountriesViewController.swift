@@ -31,6 +31,10 @@ class CountriesViewController: UIViewController {
         presenter = CountriesPresenter(networkService: NetworkManager.delegate, view: self)
         presenter.getCountriesListItems(urlID: 1)
     }
+    
+    @IBAction func backButton(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension CountriesViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -51,9 +55,9 @@ extension CountriesViewController : UICollectionViewDelegate, UICollectionViewDa
         cell.countryName.text = responseResultArray[indexPath.row].name_en
         cell.countryName.textColor = UIColor.black
         
-        cell.contentView.layer.cornerRadius = 15.0
-        cell.contentView.layer.borderWidth = 1.0
-        cell.contentView.layer.borderColor = UIColor.black.cgColor
+        cell.layer.cornerRadius = 25
+        //cell.layer.borderWidth = 1.0
+        //cell.contentView.layer.borderColor = UIColor.black.cgColor
         
         return cell
         
@@ -65,7 +69,7 @@ extension CountriesViewController : UICollectionViewDelegate, UICollectionViewDa
         
         let padding: CGFloat =  25
         let collectionViewSize = collectionView.frame.size.width - padding
-        return CGSize(width: collectionViewSize/1, height: 100)
+        return CGSize(width: collectionViewSize/1, height: 70)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -77,11 +77,12 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
         cell.leagueNameLabel.text = responseResultArray[indexPath.row].strLeague
         let imageURL = URL(string: responseResultArray[indexPath.row].strLogo ?? "")
         cell.leagugeImage.kf.setImage(with: imageURL)
-        cell.leagugeImage.layer.borderWidth = 1
+        //cell.leagugeImage.layer.borderWidth = 1
         //cell.leagugeImage.layer.masksToBounds = false
         cell.leagugeImage.layer.cornerRadius = cell.leagugeImage.frame.size.width/2
-        cell.leagugeImage.layer.borderColor = UIColor.black.cgColor
+        //cell.leagugeImage.layer.borderColor = UIColor.black.cgColor
         cell.leagugeImage.clipsToBounds = true
+        cell.leagugeImage.backgroundColor = UIColor.white
         
         cell.layer.cornerRadius = 15
         

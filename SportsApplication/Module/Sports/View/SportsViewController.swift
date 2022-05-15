@@ -17,6 +17,13 @@ class SportsViewController: UIViewController{
     var responseResultArray  : [Sport] = []
     //  selected Sport Name
     var selectedSportName : String = ""
+    //  collection view style : by default -> one item in row
+    var isList : Bool = true    // false -> grid view
+    //  for sub layer of collection view image
+    var firstSportsCollectionReload : Bool = true
+    var listBounds : CGRect = CGRect()
+    
+    @IBOutlet weak var collectionViewStyleImage: UIButton!
     
     @IBOutlet weak var sportsCollection: UICollectionView!
     
@@ -35,6 +42,20 @@ class SportsViewController: UIViewController{
         //  variables initializations
         presenter = SportsPresenter(networkService: NetworkManager.delegate, view: self)
         presenter.getSportsListItems(urlID: 0)
+        
+        //
+    }
+    
+    @IBAction func changeCollectionViewStyle(_ sender: UIButton) {
+        if (isList){
+            collectionViewStyleImage.setImage(UIImage(systemName: "list.bullet"), for: .normal)
+            isList = false
+            sportsCollection.reloadData()
+        }else{
+            collectionViewStyleImage.setImage(UIImage(systemName: "square.grid.2x2"), for: .normal)
+            isList = true
+            sportsCollection.reloadData()
+        }
     }
 }
 
@@ -52,28 +73,49 @@ extension SportsViewController : UICollectionViewDelegate, UICollectionViewDataS
    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
-        
+        //  setting sport image
         let imageURL = URL(string: responseResultArray[indexPath.row].strSportThumb ?? "")
         cell.sportThumb.kf.setImage(with: imageURL)
+        //if(indexPath.row > 0){
+        
+        if(firstSportsCollectionReload){
+            listBounds = cell.sportThumb.bounds
+            firstSportsCollectionReload = false
+        }
+        //  to remove any sublayer existed
+        cell.sportThumb.layer.sublayers?.forEach{$0.removeFromSuperlayer()}
+        // to make image  darker
+        //print("we set cell image darken")
+        let gradientLayer = CAGradientLayer()
+        if(isList){
+            gradientLayer.frame = listBounds
+        }else{
+            gradientLayer.frame = cell.sportThumb.frame
+        }
+        print("cell.bounds = \(cell.sportThumb.bounds)")
+        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        cell.sportThumb.layer.addSublayer(gradientLayer)
+        
+        //  setting sport name
         cell.sportName.text = responseResultArray[indexPath.row].strSport
-    
-        cell.sportName.textColor = UIColor.black
-        
+        //  cell corner radius
         cell.contentView.layer.cornerRadius = 15.0
-        cell.contentView.layer.borderWidth = 1.0
-        cell.contentView.layer.borderColor = UIColor.black.cgColor
-        
-                return cell
+    
+        return cell
        }
     
     func collectionView(_ collectionView: UICollectionView,
                            layout collectionViewLayout: UICollectionViewLayout,
                            sizeForItemAt indexPath: IndexPath) -> CGSize {
-         
-       let padding: CGFloat =  25
-       let collectionViewSize = collectionView.frame.size.width - padding
-       return CGSize(width: collectionViewSize/2, height: 115)
-           
+        //print("we are here")
+        let padding: CGFloat =  25
+        let collectionViewSize = collectionView.frame.size.width - padding
+        if(isList){
+            print("List view item width :\(collectionViewSize/1)")
+            return CGSize(width: collectionViewSize/1, height: 115)
+        }
+        print("Grid view item width :\(collectionViewSize/2)")
+        return CGSize(width: collectionViewSize/2, height: 115)
    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
