@@ -39,6 +39,7 @@ class LeaguesViewController: UIViewController {
         presenter = LeaguesPresenter(networkService: NetworkManager.delegate, view: self)
         if(favLeagues){
             print("You are in favourite leagues tab")
+            noLeaguesImage.isHidden = false
         }else{
             let parameters = ["c":countryName , "s":sportName]
             print("parameters: \(parameters)")
@@ -60,11 +61,18 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
         
         if(responseResultArray.count != 0){
             print("From LeaguesViewController: Leagues Array Count : \(responseResultArray.count)")
+            noLeaguesImage.isHidden = true
             //return responseResultArray.count
             return 1
         }
         if(responseResultArray.count == 0){
             print("response array length = 0")
+            if(favLeagues){
+                noLeaguesImage.image = UIImage(named: "noFavourites")
+            }else{
+                noLeaguesImage.image = UIImage(named: "noLeagues")
+            }
+            
             noLeaguesImage.isHidden = false
         }
         return 0
