@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="h5A-7m-xBS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="h5A-7m-xBS">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -140,7 +140,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6Z-b7-Wjw">
-                                <rect key="frame" x="377" y="16" width="21" height="22"/>
+                                <rect key="frame" x="378.5" y="16" width="19.5" height="22"/>
                                 <state key="normal" image="heart" catalog="system"/>
                                 <connections>
                                     <action selector="favBtn:" destination="dY0-02-ikR" eventType="touchUpInside" id="s5o-3m-U1H"/>
@@ -268,11 +268,11 @@
             <objects>
                 <viewController storyboardIdentifier="go_to_leagues" id="Z3w-Fx-quq" customClass="LeaguesViewController" customModule="SportsApplication" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Ou-Lx-MST">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="g8a-Z1-4aL">
-                                <rect key="frame" x="16" y="66" width="382" height="726"/>
+                                <rect key="frame" x="16" y="110" width="382" height="687"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tEg-eE-ooc">
                                     <size key="itemSize" width="382" height="104"/>
@@ -281,7 +281,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <imageView key="backgroundView" hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch-screen-background" id="Raq-i1-ZN5">
-                                    <rect key="frame" x="0.0" y="0.0" width="382" height="726"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="382" height="687"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <cells>
@@ -299,47 +299,56 @@
                                                         <constraint firstAttribute="width" constant="54" id="euQ-qP-Ig6"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="youtubeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="M5X-MW-bNx">
-                                                    <rect key="frame" x="299" y="10.5" width="35" height="49"/>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="League" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSl-Id-QmD">
-                                                    <rect key="frame" x="70" y="24" width="221" height="22"/>
+                                                    <rect key="frame" x="70" y="24.5" width="214" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2TN-jq-Dqn">
+                                                    <rect key="frame" x="292" y="10" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="OhD-VH-Hbh"/>
+                                                        <constraint firstAttribute="height" constant="50" id="puU-SU-pir"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button" image="youtubeIcon">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="youtubeImage:" destination="LUX-x8-dGm" eventType="touchUpInside" id="PFN-EP-hL4"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="KVP-uh-S2G" firstAttribute="leading" secondItem="Wtk-oa-ODZ" secondAttribute="leading" constant="8" id="6lV-Wa-LG7"/>
-                                                <constraint firstItem="M5X-MW-bNx" firstAttribute="centerY" secondItem="Wtk-oa-ODZ" secondAttribute="centerY" id="AxQ-z0-3Xu"/>
                                                 <constraint firstItem="vSl-Id-QmD" firstAttribute="centerY" secondItem="Wtk-oa-ODZ" secondAttribute="centerY" id="HLm-q3-7nT"/>
+                                                <constraint firstItem="2TN-jq-Dqn" firstAttribute="centerY" secondItem="Wtk-oa-ODZ" secondAttribute="centerY" id="HNR-yR-OfO"/>
                                                 <constraint firstItem="vSl-Id-QmD" firstAttribute="leading" secondItem="KVP-uh-S2G" secondAttribute="trailing" constant="8" id="KKL-hA-aLo"/>
-                                                <constraint firstItem="M5X-MW-bNx" firstAttribute="leading" secondItem="vSl-Id-QmD" secondAttribute="trailing" constant="8" id="KpD-2A-F7o"/>
-                                                <constraint firstAttribute="trailing" secondItem="M5X-MW-bNx" secondAttribute="trailing" constant="16" id="R5c-eh-vh0"/>
-                                                <constraint firstItem="M5X-MW-bNx" firstAttribute="height" secondItem="Wtk-oa-ODZ" secondAttribute="height" multiplier="3.5:5" id="XIV-US-Awa"/>
+                                                <constraint firstItem="2TN-jq-Dqn" firstAttribute="leading" secondItem="vSl-Id-QmD" secondAttribute="trailing" constant="8" id="Yn2-tY-GgF"/>
+                                                <constraint firstAttribute="trailing" secondItem="2TN-jq-Dqn" secondAttribute="trailing" constant="8" id="mop-6h-5Ey"/>
+                                                <constraint firstItem="2TN-jq-Dqn" firstAttribute="firstBaseline" secondItem="KVP-uh-S2G" secondAttribute="firstBaseline" id="umQ-mX-Uvd"/>
                                                 <constraint firstItem="KVP-uh-S2G" firstAttribute="centerY" secondItem="Wtk-oa-ODZ" secondAttribute="centerY" id="up8-U2-EKG"/>
-                                                <constraint firstItem="M5X-MW-bNx" firstAttribute="width" secondItem="Wtk-oa-ODZ" secondAttribute="width" multiplier="0.5:5" id="vi8-5a-3aa"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="350" height="70"/>
                                         <connections>
                                             <outlet property="leagueNameLabel" destination="vSl-Id-QmD" id="XiN-gm-wLG"/>
                                             <outlet property="leagugeImage" destination="KVP-uh-S2G" id="ZeL-sl-qzv"/>
-                                            <outlet property="youtubeImage" destination="M5X-MW-bNx" id="Uzw-df-Ybh"/>
+                                            <outlet property="youtubeIcon" destination="2TN-jq-Dqn" id="QrT-4D-om3"/>
                                             <segue destination="dY0-02-ikR" kind="show" id="v21-Vg-qvV"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sport" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYs-Xq-NY7">
-                                <rect key="frame" x="182" y="16" width="50" height="26"/>
+                                <rect key="frame" x="182" y="60" width="50" height="26"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dnl-k0-o9A">
-                                <rect key="frame" x="16" y="16" width="67" height="29.5"/>
+                                <rect key="frame" x="16" y="60" width="67" height="29.5"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Button" image="chevron.left" catalog="system"/>
                                 <connections>
@@ -393,15 +402,15 @@
             <point key="canvasLocation" x="131.8840579710145" y="93.75"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="5wj-f3-LGw"/>
-    </inferredMetricsTieBreakers>
     <resources>
-        <image name="chevron.left" catalog="system" width="96" height="128"/>
-        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="chevron.left" catalog="system" width="46" height="64"/>
+        <image name="heart" catalog="system" width="64" height="58"/>
         <image name="launch-screen-background" width="800" height="529"/>
         <image name="sport" width="24" height="24"/>
-        <image name="square.grid.2x2" catalog="system" width="128" height="114"/>
+        <image name="square.grid.2x2" catalog="system" width="64" height="56"/>
         <image name="youtubeIcon" width="206" height="206"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Ybf-Cn-nnI"/>
+    </inferredMetricsTieBreakers>
 </document>

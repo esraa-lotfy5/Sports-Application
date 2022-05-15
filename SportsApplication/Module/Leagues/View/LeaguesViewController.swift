@@ -93,6 +93,9 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
         cell.leagugeImage.clipsToBounds = true
         cell.leagugeImage.backgroundColor = UIColor.white
         
+        let backgroundImage = UIImage(named: "youtubeIcon")
+        cell.youtubeIcon.setImage(backgroundImage, for: .normal)
+        
         cell.layer.cornerRadius = 15
         
         return cell
