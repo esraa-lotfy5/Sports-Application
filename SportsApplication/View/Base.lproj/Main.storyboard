@@ -113,18 +113,63 @@
         <!--Favourites-->
         <scene sceneID="S9E-6P-Nrt">
             <objects>
-                <viewController id="dY0-02-ikR" sceneMemberID="viewController">
+                <viewController id="dY0-02-ikR" customClass="LeaguesDetailsViewController" customModule="SportsApplication" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6QP-ni-mAi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMC-DU-aOl">
+                                <rect key="frame" x="16" y="16" width="67" height="22"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Button" image="chevron.left" catalog="system"/>
+                                <connections>
+                                    <action selector="backBtn:" destination="dY0-02-ikR" eventType="touchUpInside" id="OPE-YN-q7w"/>
+                                    <action selector="backButton:" destination="Z3w-Fx-quq" eventType="touchUpInside" id="eqS-FJ-dQA"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="League name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93x-bL-OWK">
+                                <rect key="frame" x="146" y="16" width="122" height="26"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upcoming events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6c-ak-x59">
+                                <rect key="frame" x="16" y="74" width="155" height="26"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6Z-b7-Wjw">
+                                <rect key="frame" x="377" y="16" width="21" height="22"/>
+                                <state key="normal" image="heart" catalog="system"/>
+                                <connections>
+                                    <action selector="favBtn:" destination="dY0-02-ikR" eventType="touchUpInside" id="s5o-3m-U1H"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Z6Z-b7-Wjw" firstAttribute="top" secondItem="J3y-nM-k8a" secondAttribute="top" constant="16" id="GR6-Xh-6if"/>
+                            <constraint firstItem="FMC-DU-aOl" firstAttribute="leading" secondItem="J3y-nM-k8a" secondAttribute="leading" constant="16" id="GRd-2l-rKB"/>
+                            <constraint firstItem="y6c-ak-x59" firstAttribute="top" secondItem="93x-bL-OWK" secondAttribute="bottom" constant="32" id="RFx-r5-26e"/>
+                            <constraint firstItem="J3y-nM-k8a" firstAttribute="trailing" secondItem="Z6Z-b7-Wjw" secondAttribute="trailing" constant="16" id="aBK-9y-meI"/>
+                            <constraint firstItem="93x-bL-OWK" firstAttribute="top" secondItem="J3y-nM-k8a" secondAttribute="top" constant="16" id="at8-Ek-G61"/>
+                            <constraint firstItem="93x-bL-OWK" firstAttribute="centerX" secondItem="6QP-ni-mAi" secondAttribute="centerX" id="fVZ-pi-kGw"/>
+                            <constraint firstItem="y6c-ak-x59" firstAttribute="leading" secondItem="J3y-nM-k8a" secondAttribute="leading" constant="16" id="nel-xy-xiH"/>
+                            <constraint firstItem="FMC-DU-aOl" firstAttribute="top" secondItem="J3y-nM-k8a" secondAttribute="top" constant="16" id="zgI-S8-4i5"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="J3y-nM-k8a"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Favourites" image="heart" catalog="system" id="sbi-qX-T9Z"/>
+                    <navigationItem key="navigationItem" id="cpM-8u-InR"/>
+                    <connections>
+                        <outlet property="leagueName" destination="93x-bL-OWK" id="aNU-q1-OAn"/>
+                        <outlet property="upcomingEvents" destination="y6c-ak-x59" id="ugh-lt-ett"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T4Z-ns-IMS" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="783" y="818"/>
+            <point key="canvasLocation" x="2093" y="2267"/>
         </scene>
         <!--Countries View Controller-->
         <scene sceneID="ZbG-jb-CHu">
@@ -282,6 +327,7 @@
                                             <outlet property="leagueNameLabel" destination="vSl-Id-QmD" id="XiN-gm-wLG"/>
                                             <outlet property="leagugeImage" destination="KVP-uh-S2G" id="ZeL-sl-qzv"/>
                                             <outlet property="youtubeImage" destination="M5X-MW-bNx" id="Uzw-df-Ybh"/>
+                                            <segue destination="dY0-02-ikR" kind="show" id="v21-Vg-qvV"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

@@ -23,6 +23,7 @@ class LeaguesViewController: UIViewController {
     @IBOutlet weak var sportLabel: UILabel!
     @IBOutlet weak var noLeaguesImage: UIImageView!
     @IBOutlet weak var leaguesCollection: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -107,16 +108,21 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
         return CGSize(width: collectionViewSize/1, height: 70)
     }
     
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        print("inside prepare for segue in leagues\n")
 
-        let leaguesViewController : LeaguesViewController = segue.destination as! LeaguesViewController
+        let leaguesDetailsViewController : LeaguesDetailsViewController = segue.destination as! LeaguesDetailsViewController
         //  to get selected cell
         let cell = sender as! UICollectionViewCell
-        let indexPath = self.countriesCollection!.indexPath(for: cell)
-        leaguesViewController.sportName = sportNameInCountryViewController
-        leaguesViewController.countryName = responseResultArray[indexPath?.row ?? -1].name_en ?? ""
-        leaguesViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-    }*/
+        let indexPath = self.leaguesCollection!.indexPath(for: cell)
+        leaguesDetailsViewController.sportName = sportName
+//        leaguesViewController.countryName = responseResultArray[indexPath?.row ?? -1].name_en ?? ""
+        leaguesDetailsViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        
+        self.present(leaguesDetailsViewController, animated: true)
+
+    }
 }
 
 extension LeaguesViewController : LeaguesViewControllerProtocol{

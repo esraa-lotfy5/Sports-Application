@@ -33,6 +33,7 @@
 		1EC8369D9A1A2F6ACAC64D4C /* Pods_SportsApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC8D74BF0542678A82DB163 /* Pods_SportsApplication.framework */; };
 		A003D12928313E98003E0563 /* LeaguesDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003D12828313E98003E0563 /* LeaguesDetailsPresenter.swift */; };
 		A003D12B28313EBD003E0563 /* LeaguesDetailsPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003D12A28313EBD003E0563 /* LeaguesDetailsPresenterProtocol.swift */; };
+		A003D12D2831698D003E0563 /* LeaguesDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003D12C2831698D003E0563 /* LeaguesDetailsViewController.swift */; };
 		A09DD41E282E7CE400B37333 /* CountriesPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09DD41D282E7CE400B37333 /* CountriesPresenterProtocol.swift */; };
 		A09DD420282E7D1A00B37333 /* CountriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09DD41F282E7D1A00B37333 /* CountriesPresenter.swift */; };
 		A09DD422282E7D9500B37333 /* CountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09DD421282E7D9500B37333 /* CountriesViewController.swift */; };
@@ -90,6 +91,7 @@
 		73DB1DBD59AA0197F476B4C3 /* Pods-SportsApplication.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsApplication.release.xcconfig"; path = "Target Support Files/Pods-SportsApplication/Pods-SportsApplication.release.xcconfig"; sourceTree = "<group>"; };
 		A003D12828313E98003E0563 /* LeaguesDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesDetailsPresenter.swift; sourceTree = "<group>"; };
 		A003D12A28313EBD003E0563 /* LeaguesDetailsPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesDetailsPresenterProtocol.swift; sourceTree = "<group>"; };
+		A003D12C2831698D003E0563 /* LeaguesDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesDetailsViewController.swift; sourceTree = "<group>"; };
 		A09DD41D282E7CE400B37333 /* CountriesPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesPresenterProtocol.swift; sourceTree = "<group>"; };
 		A09DD41F282E7D1A00B37333 /* CountriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesPresenter.swift; sourceTree = "<group>"; };
 		A09DD421282E7D9500B37333 /* CountriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewController.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 		A003D12628313E1D003E0563 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A003D12C2831698D003E0563 /* LeaguesDetailsViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -563,6 +566,7 @@
 				A09DD426282E80A500B37333 /* CountryCollectionViewCell.swift in Sources */,
 				09B72FEC282DD07B00B86DE1 /* Sport.swift in Sources */,
 				09E4E253282BEC6300FBA86D /* SportsViewController.swift in Sources */,
+				A003D12D2831698D003E0563 /* LeaguesDetailsViewController.swift in Sources */,
 				A0CF1C8D282C52ED00E3D633 /* CollectionViewCell.swift in Sources */,
 				09B72FF2282DD40C00B86DE1 /* SportsPresenterProtocol.swift in Sources */,
 				A09DD42F282EA90700B37333 /* League.swift in Sources */,

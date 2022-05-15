@@ -14,4 +14,9 @@ class LeaguesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var leagugeImage: UIImageView!
     @IBOutlet weak var leagueNameLabel: UILabel!
     
+
+    
+    
+
+    
 }
