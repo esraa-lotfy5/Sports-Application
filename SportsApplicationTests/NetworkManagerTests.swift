@@ -24,7 +24,7 @@ class NetworkManagerTests: XCTestCase {
     //all sports
     func testFetchSportsList(){
         let expectationOject = expectation(description: "Waiting for the response")
-        networkDelegate.fetchLists(urlID: 0, paramerters: [:]){(result, error) -> Void in
+        networkDelegate.fetchLists(urlID: 0, paramerters: [:]){(result, error,isNull) -> Void in
             guard let sports = (result as? SportsResponse)?.sports else{
                 XCTFail()
                 expectationOject.fulfill()
@@ -39,7 +39,7 @@ class NetworkManagerTests: XCTestCase {
     //all countires
     func testFetchCountriesList(){
           let expectationOject = expectation(description: "Waiting for the response")
-        networkDelegate.fetchLists(urlID: 1, paramerters: [:]){(result, error) -> Void in
+        networkDelegate.fetchLists(urlID: 1, paramerters: [:]){(result, error,isNull) -> Void in
               guard let countries = (result as? CountriesResponse)?.countries else{
                   XCTFail()
                   expectationOject.fulfill()
@@ -54,13 +54,29 @@ class NetworkManagerTests: XCTestCase {
     //all leagues
     func testFetchLeaguesList(){
           let expectationOject = expectation(description: "Waiting for the response")
-        networkDelegate.fetchLists(urlID: 2, paramerters: ["c":"England","s":"Soccer"]){(result, error) -> Void in
+        networkDelegate.fetchLists(urlID: 2, paramerters: ["c":"England","s":"Soccer"]){(result, error,isNull) -> Void in
             guard let leagues = (result as? LeaguesResponse)?.countries else{
                   XCTFail()
                   expectationOject.fulfill()
                   return
               }
               XCTAssertEqual(leagues.count, 10, "error in API items' count") // true : 10
+              expectationOject.fulfill()
+         }
+         waitForExpectations(timeout: 15, handler: nil)
+     }
+    
+    //all teams
+    func testFetchTeamsList(){
+          let expectationOject = expectation(description: "Waiting for the response")
+        networkDelegate.fetchLists(urlID: 3, paramerters: ["s":"Soccer", "c":"England"]){(result, error,isNull) -> Void in
+            guard let teams = (result as? TeamsResponse)?.teams else{
+                  XCTFail()
+                  expectationOject.fulfill()
+                  return
+              }
+            print("number of teams = \(teams.count)")
+              XCTAssertEqual(teams.count, 50, "error in API items' count") // true : 50
               expectationOject.fulfill()
          }
          waitForExpectations(timeout: 15, handler: nil)

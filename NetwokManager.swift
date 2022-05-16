@@ -15,10 +15,12 @@ class NetworkManager : NetworkManagerProtocol{
     // urls[0]: all sports url
     // urls[1]: all countries
     // urls[2]: all leagues
+    // urls[3]: all teams ->  s=Soccer&c=Spain"
     let urls = [
         "https://www.thesportsdb.com/api/v1/json/2/all_sports.php",
         "https://www.thesportsdb.com/api/v1/json/2/all_countries.php",
-        "https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?"
+        "https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?",
+        "https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?"
         ]
     //"https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?c=England&s=Soccer"
     
@@ -51,6 +53,9 @@ class NetworkManager : NetworkManagerProtocol{
                     break
                 case 2:
                     let info = try decoder.decode(LeaguesResponse.self, from: data)
+                    complitionHandler(info, nil, false)
+                case 3:
+                    let info = try decoder.decode(TeamsResponse.self, from: data)
                     complitionHandler(info, nil, false)
                 default:
                     print("request url not true")

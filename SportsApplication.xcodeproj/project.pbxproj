@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0900015F2831B25A0004B722 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0900015E2831B25A0004B722 /* Team.swift */; };
+		090001612831C2140004B722 /* TeamsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090001602831C2140004B722 /* TeamsResponse.swift */; };
 		09122312282EBAAA0040A84C /* LeaguesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09122311282EBAAA0040A84C /* LeaguesPresenter.swift */; };
 		09122314282EBABB0040A84C /* LeaguesPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09122313282EBABB0040A84C /* LeaguesPresenterProtocol.swift */; };
 		09122316282EBC680040A84C /* LeaguesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09122315282EBC680040A84C /* LeaguesViewController.swift */; };
@@ -59,6 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0900015E2831B25A0004B722 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		090001602831C2140004B722 /* TeamsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsResponse.swift; sourceTree = "<group>"; };
 		09122311282EBAAA0040A84C /* LeaguesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesPresenter.swift; sourceTree = "<group>"; };
 		09122313282EBABB0040A84C /* LeaguesPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesPresenterProtocol.swift; sourceTree = "<group>"; };
 		09122315282EBC680040A84C /* LeaguesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +226,8 @@
 				A09DD42C282EA8D600B37333 /* LeaguesResponse.swift */,
 				A09DD42E282EA90700B37333 /* League.swift */,
 				097A9634282FEA9900843D41 /* NullResponse.swift */,
+				0900015E2831B25A0004B722 /* Team.swift */,
+				090001602831C2140004B722 /* TeamsResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -564,6 +570,7 @@
 				0912231A282EBCCF0040A84C /* LeaguesCollectionViewCell.swift in Sources */,
 				09B72FEE282DD09200B86DE1 /* SportsResponse.swift in Sources */,
 				A09DD426282E80A500B37333 /* CountryCollectionViewCell.swift in Sources */,
+				0900015F2831B25A0004B722 /* Team.swift in Sources */,
 				09B72FEC282DD07B00B86DE1 /* Sport.swift in Sources */,
 				09E4E253282BEC6300FBA86D /* SportsViewController.swift in Sources */,
 				A003D12D2831698D003E0563 /* LeaguesDetailsViewController.swift in Sources */,
@@ -580,6 +587,7 @@
 				097A9635282FEA9900843D41 /* NullResponse.swift in Sources */,
 				A09DD428282E973F00B37333 /* CountriesResponse.swift in Sources */,
 				09B72FF0282DD3F300B86DE1 /* SportsViewControllerProtocol.swift in Sources */,
+				090001612831C2140004B722 /* TeamsResponse.swift in Sources */,
 				A09DD41E282E7CE400B37333 /* CountriesPresenterProtocol.swift in Sources */,
 				09E4E24F282BEC6300FBA86D /* AppDelegate.swift in Sources */,
 				A09DD424282E7DB600B37333 /* CountriesViewControllerProtocol.swift in Sources */,
