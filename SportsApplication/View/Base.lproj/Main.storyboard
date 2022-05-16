@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="h5A-7m-xBS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="h5A-7m-xBS">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -140,7 +140,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6Z-b7-Wjw">
-                                <rect key="frame" x="378.5" y="16" width="19.5" height="22"/>
+                                <rect key="frame" x="377.5" y="16" width="20.5" height="22"/>
                                 <state key="normal" image="heart" catalog="system"/>
                                 <connections>
                                     <action selector="favBtn:" destination="dY0-02-ikR" eventType="touchUpInside" id="s5o-3m-U1H"/>
@@ -402,15 +402,15 @@
             <point key="canvasLocation" x="131.8840579710145" y="93.75"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="chevron.left" catalog="system" width="46" height="64"/>
-        <image name="heart" catalog="system" width="64" height="58"/>
-        <image name="launch-screen-background" width="800" height="529"/>
-        <image name="sport" width="24" height="24"/>
-        <image name="square.grid.2x2" catalog="system" width="64" height="56"/>
-        <image name="youtubeIcon" width="206" height="206"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Ybf-Cn-nnI"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <image name="chevron.left" catalog="system" width="96" height="128"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="launch-screen-background" width="800" height="529"/>
+        <image name="sport" width="24" height="24"/>
+        <image name="square.grid.2x2" catalog="system" width="128" height="114"/>
+        <image name="youtubeIcon" width="206" height="206"/>
+    </resources>
 </document>

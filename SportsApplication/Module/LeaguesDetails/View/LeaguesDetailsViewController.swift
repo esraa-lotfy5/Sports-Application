@@ -14,7 +14,6 @@ class LeaguesDetailsViewController: UIViewController {
 
     @IBAction func backBtn(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
-
     }
     
     @IBOutlet weak var leagueName: UILabel!
@@ -25,10 +24,7 @@ class LeaguesDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         leagueName.text = sportName
-        
-        
     }
     
 
