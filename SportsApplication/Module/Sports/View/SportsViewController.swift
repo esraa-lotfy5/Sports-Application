@@ -116,14 +116,15 @@ extension SportsViewController : UICollectionViewDelegate, UICollectionViewDataS
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let countriesViewController : CountriesViewController = segue.destination as! CountriesViewController
+        let leaguesViewController : LeaguesViewController = segue.destination as! LeaguesViewController
         //  to get selected cell
         let cell = sender as! UICollectionViewCell
         let indexPath = self.sportsCollection!.indexPath(for: cell)
-        countriesViewController.sportNameInCountryViewController = responseResultArray[indexPath?.row ?? -1].strSport ?? ""
-        countriesViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        leaguesViewController.sportName = responseResultArray[indexPath?.row ?? -1].strSport ?? ""
+        leaguesViewController.favLeagues = false
+        leaguesViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         
-        self.present(countriesViewController, animated: true)
+        self.present(leaguesViewController, animated: true)
     }
 }
 

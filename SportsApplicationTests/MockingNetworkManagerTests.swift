@@ -43,13 +43,13 @@ class MockingNetworkManagerTests: XCTestCase {
     
     //test for all leagues list
    func testFetchLeaguesList(){
-    mockObject.fetchLists(urlID: 2, paramerters: ["c":"England" , "s":"Soccer"]) { (leagues, error, isNull) in
+    mockObject.fetchLists(urlID: 2, paramerters: ["s":"Soccer"]) { (leagues, error, isNull) in
            guard let leagues = (leagues as? LeaguesResponse)?.countries else{
                XCTFail()
                return
            }
         print("leagues.count = \(leagues.count)")
-           XCTAssertEqual(leagues.count, 10, "API failed") //true: 10
+           XCTAssertEqual(leagues.count, 150, "API failed") //true: 10
        }
    }
     

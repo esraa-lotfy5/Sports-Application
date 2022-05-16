@@ -51,7 +51,7 @@ extension CountriesViewController : UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CountryCollectionViewCell
-        
+
         cell.countryName.text = responseResultArray[indexPath.row].name_en
         cell.countryName.textColor = UIColor.black
         
@@ -72,7 +72,7 @@ extension CountriesViewController : UICollectionViewDelegate, UICollectionViewDa
         return CGSize(width: collectionViewSize/1, height: 70)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         let leaguesViewController : LeaguesViewController = segue.destination as! LeaguesViewController
         //  to get selected cell
@@ -82,7 +82,7 @@ extension CountriesViewController : UICollectionViewDelegate, UICollectionViewDa
         leaguesViewController.countryName = responseResultArray[indexPath?.row ?? -1].name_en ?? ""
         leaguesViewController.favLeagues = false
         leaguesViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-    }
+    }*/
 }
 
 extension CountriesViewController : CountriesViewControllerProtocol{

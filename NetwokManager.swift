@@ -22,6 +22,8 @@ class NetworkManager : NetworkManagerProtocol{
         "https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?",
         "https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?"
         ]
+    //https://thesportsdb.com/api/v1/json/2/search_all_leagues.php?s=Soccer -> new
+    //"https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?" -> old
     //"https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?c=England&s=Soccer"
     
     //  for fetching -> AllSportsList, AllCountriesList, LeaguesList
@@ -53,6 +55,7 @@ class NetworkManager : NetworkManagerProtocol{
                     break
                 case 2:
                     let info = try decoder.decode(LeaguesResponse.self, from: data)
+                    print("\n  \n info : \(info) \n \n")
                     complitionHandler(info, nil, false)
                 case 3:
                     let info = try decoder.decode(TeamsResponse.self, from: data)

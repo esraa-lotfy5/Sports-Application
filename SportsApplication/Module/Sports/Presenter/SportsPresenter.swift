@@ -10,7 +10,7 @@ import Foundation
 
 class SportsPresenter : SportsPresenterProtocol{
     var networkManager : NetworkManagerProtocol!
-    var responseResult : Any!
+    var responseResult : SportsResponse!
     weak var view : SportsViewControllerProtocol!
     
     init(networkService : NetworkManager, view : SportsViewControllerProtocol){
@@ -19,6 +19,7 @@ class SportsPresenter : SportsPresenterProtocol{
     }
     
     func getSportsListItems(urlID : Int){
+        
         networkManager.fetchLists(urlID: urlID, paramerters: [:]){[weak self] (result,error,isCountriesEqualNull)  in
             guard result != nil else{
                 print("From All sports presenter: Response = nil")

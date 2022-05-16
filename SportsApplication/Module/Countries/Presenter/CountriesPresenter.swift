@@ -19,12 +19,12 @@ class CountriesPresenter : CountriesPresenterProtocol{
     
     func getCountriesListItems(urlID: Int) {
         
-        networkManager.fetchLists(urlID: urlID, paramerters: [:]){[weak self] (result,error,isCountriesEqualNull)  in
+       /* networkManager.fetchLists(urlID: urlID, paramerters: [:]){[weak self] (result,error,isCountriesEqualNull)  in
             guard result != nil else{
                 print("From All countries presenter: Response = nil")
                 return
             }
             self?.view.renderCountriesCollectionViewFromNetwork(response: result!)
-        }
+        }*/
     }
 }
