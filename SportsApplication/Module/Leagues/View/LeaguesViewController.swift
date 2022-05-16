@@ -79,6 +79,14 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
         return 0
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("you are in did item selected")
+        let leaguesDetailsViewController : LeaguesDetailsViewController = self.storyboard?.instantiateViewController(identifier: "go-to-leaguesDetails") as! LeaguesDetailsViewController
+        leaguesDetailsViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        
+        self.present(leaguesDetailsViewController, animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LeaguesCollectionViewCell

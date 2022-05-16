@@ -85,14 +85,12 @@ extension SportsViewController : UICollectionViewDelegate, UICollectionViewDataS
         //  to remove any sublayer existed
         cell.sportThumb.layer.sublayers?.forEach{$0.removeFromSuperlayer()}
         // to make image  darker
-        //print("we set cell image darken")
         let gradientLayer = CAGradientLayer()
         if(isList){
             gradientLayer.frame = listBounds
         }else{
             gradientLayer.frame = cell.sportThumb.frame
         }
-        print("cell.bounds = \(cell.sportThumb.bounds)")
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         cell.sportThumb.layer.addSublayer(gradientLayer)
         
@@ -111,10 +109,8 @@ extension SportsViewController : UICollectionViewDelegate, UICollectionViewDataS
         let padding: CGFloat =  25
         let collectionViewSize = collectionView.frame.size.width - padding
         if(isList){
-            print("List view item width :\(collectionViewSize/1)")
             return CGSize(width: collectionViewSize/1, height: 115)
         }
-        print("Grid view item width :\(collectionViewSize/2)")
         return CGSize(width: collectionViewSize/2, height: 115)
    }
     
