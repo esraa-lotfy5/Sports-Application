@@ -82,6 +82,10 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LeaguesCollectionViewCell
         
+        //pass youtube link to leagueCell class
+        let leagueCell = LeaguesCollectionViewCell()
+        leagueCell.url = responseResultArray[indexPath.row].strYoutube ?? ""
+        
         cell.leagueNameLabel.text = responseResultArray[indexPath.row].strLeague
         let imageURL = URL(string: responseResultArray[indexPath.row].strLogo ?? "")
         cell.leagugeImage.kf.setImage(with: imageURL)
@@ -130,6 +134,7 @@ extension LeaguesViewController : LeaguesViewControllerProtocol{
         }else{
             responseResultArray = (response as! LeaguesResponse).countries
             print("reponseArray.count : \(responseResultArray.count)")
+            print("youtube link is : \(responseResultArray[1].strYoutube)")
         }
         self.leaguesCollection.reloadData()
     }

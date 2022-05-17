@@ -10,6 +10,8 @@ import UIKit
 
 class LeaguesCollectionViewCell: UICollectionViewCell {
     
+    var url : String = ""
+    
     @IBOutlet weak var leagugeImage: UIImageView!
     @IBOutlet weak var leagueNameLabel: UILabel!
     
@@ -18,6 +20,7 @@ class LeaguesCollectionViewCell: UICollectionViewCell {
     @IBAction func youtubeImage(_ sender: Any) {
         
         print("Tapped on Image")
+        print(url)
                
                let youtubeId = "SxTYjptEzZs"
                   var youtubeUrl = NSURL(string:"youtube://\(youtubeId)")!
