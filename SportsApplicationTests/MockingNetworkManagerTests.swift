@@ -64,4 +64,16 @@ class MockingNetworkManagerTests: XCTestCase {
               XCTAssertEqual(teams.count, 4, "API failed") //true: 10
           }
       }
+    
+    //test for all events list
+    func testFetchEventsList(){
+        mockObject.fetchLists(urlID: 4, paramerters: ["id":"4328" ]) { (events, error, isNull) in
+            guard let events = (events as? EventsResponse)?.events else{
+                XCTFail()
+                return
+            }
+            print("events.count = \(events.count)")
+            XCTAssertEqual(teams.count, 2, "API failed") //true: 2
+        }
+    }
 }

@@ -83,4 +83,21 @@ class NetworkManagerTests: XCTestCase {
          }
          waitForExpectations(timeout: 15, handler: nil)
      }
+    
+    
+    //all events
+    func testFetchEventsList(){
+          let expectationOject = expectation(description: "Waiting for the response")
+        networkDelegate.fetchLists(urlID: 4, paramerters: ["id":"4328"]){(result, error,isNull) -> Void in
+            guard let events = (result as? EventsResponse)?.events else{
+                  XCTFail()
+                  expectationOject.fulfill()
+                  return
+              }
+            print("number of events = \(events.count)")
+              XCTAssertEqual(events.count, 2, "error in API items' count") // true : 2
+              expectationOject.fulfill()
+         }
+         waitForExpectations(timeout: 15, handler: nil)
+     }
 }

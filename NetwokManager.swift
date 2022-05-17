@@ -20,7 +20,8 @@ class NetworkManager : NetworkManagerProtocol{
         "https://www.thesportsdb.com/api/v1/json/2/all_sports.php",
         "https://www.thesportsdb.com/api/v1/json/2/all_countries.php",
         "https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?",
-        "https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?"
+        "https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?",
+        "https://www.thesportsdb.com/api/v1/json/2/eventsseason.php?id=4328"
         ]
     //https://thesportsdb.com/api/v1/json/2/search_all_leagues.php?s=Soccer -> new
     //"https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?" -> old
@@ -55,10 +56,14 @@ class NetworkManager : NetworkManagerProtocol{
                     break
                 case 2:
                     let info = try decoder.decode(LeaguesResponse.self, from: data)
-                    print("\n  \n info : \(info) \n \n")
+                   // print("\n  \n info : \(info) \n \n")
                     complitionHandler(info, nil, false)
                 case 3:
                     let info = try decoder.decode(TeamsResponse.self, from: data)
+                    complitionHandler(info, nil, false)
+                case 4:
+                    let info = try decoder.decode(EventsResponse.self, from: data)
+                    print("\n Events Response:\(info.events.count)")
                     complitionHandler(info, nil, false)
                 default:
                     print("request url not true")

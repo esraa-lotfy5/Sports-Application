@@ -17,7 +17,8 @@ class LeaguesCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var youtubeIcon: UIButton!
     
-    @IBAction func youtubeImage(_ sender: Any) {
+    @IBAction func youtubeBtn(_ sender: UIButton) {
+   
         
         print("Tapped on Image")
         print(url)

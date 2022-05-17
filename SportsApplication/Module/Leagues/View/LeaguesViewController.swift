@@ -87,7 +87,7 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
         leagueCell.url = responseResultArray[indexPath.row].strYoutube ?? ""
         
         cell.leagueNameLabel.text = responseResultArray[indexPath.row].strLeague
-        let imageURL = URL(string: responseResultArray[indexPath.row].strLogo ?? "")
+        let imageURL = URL(string: responseResultArray[indexPath.row].strBadge ?? "")
         cell.leagugeImage.kf.setImage(with: imageURL)
         //cell.leagugeImage.layer.borderWidth = 1
         //cell.leagugeImage.layer.masksToBounds = false
@@ -119,7 +119,7 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
         let cell = sender as! UICollectionViewCell
         let indexPath = self.leaguesCollection!.indexPath(for: cell)
         leaguesDetailsViewController.sportName = sportName
-//        leaguesViewController.countryName = responseResultArray[indexPath?.row ?? -1].name_en ?? ""
+        //        leaguesViewController.countryName = responseResultArray[indexPath?.row ?? -1].name_en ?? ""
         leaguesDetailsViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         
         self.present(leaguesDetailsViewController, animated: true)
