@@ -40,7 +40,7 @@ class LeaguesViewController: UIViewController {
         presenter = LeaguesPresenter(networkService: NetworkManager.delegate, view: self)
         if(favLeagues){
             print("You are in favourite leagues tab")
-            //noLeaguesImage.isHidden = false
+            noLeaguesImage.isHidden = false
         }else{
             let parameters = [ "s":sportName]
             print("parameters: \(parameters)")
@@ -62,29 +62,20 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
         
         if(responseResultArray.count != 0){
             print("From LeaguesViewController: Leagues Array Count : \(responseResultArray.count)")
-            //noLeaguesImage.isHidden = true
+            noLeaguesImage.isHidden = true
             return responseResultArray.count
-            //return 1
         }
         if(responseResultArray.count == 0){
             print("response array length = 0")
-            /*if(favLeagues){
+            if(favLeagues){
                 noLeaguesImage.image = UIImage(named: "noFavourites")
             }else{
                 noLeaguesImage.image = UIImage(named: "noLeagues")
-            }*/
+            }
             
-            //noLeaguesImage.isHidden = false
+            noLeaguesImage.isHidden = false
         }
         return 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("you are in did item selected")
-        /*let leaguesDetailsViewController : LeaguesDetailsViewController = self.storyboard?.instantiateViewController(identifier: "go-to-leaguesDetails") as! LeaguesDetailsViewController
-        leaguesDetailsViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        
-        self.present(leaguesDetailsViewController, animated: true)*/
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -100,10 +91,7 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
         //cell.leagugeImage.layer.borderColor = UIColor.black.cgColor
         cell.leagugeImage.clipsToBounds = true
         cell.leagugeImage.backgroundColor = UIColor.white
-        
-        let backgroundImage = UIImage(named: "youtubeIcon")
-        cell.youtubeIcon.setImage(backgroundImage, for: .normal)
-        
+                
         cell.layer.cornerRadius = 15
         
         return cell
@@ -122,7 +110,6 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         print("inside prepare for segue in leagues\n")
-/*
         let leaguesDetailsViewController : LeaguesDetailsViewController = segue.destination as! LeaguesDetailsViewController
         //  to get selected cell
         let cell = sender as! UICollectionViewCell
@@ -132,7 +119,6 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
         leaguesDetailsViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         
         self.present(leaguesDetailsViewController, animated: true)
-*/
     }
 }
 
