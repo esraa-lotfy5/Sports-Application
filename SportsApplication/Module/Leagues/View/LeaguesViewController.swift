@@ -25,7 +25,7 @@ class LeaguesViewController: UIViewController {
     @IBOutlet weak var sportLabel: UILabel!
     @IBOutlet weak var noLeaguesImage: UIImageView!
     @IBOutlet weak var leaguesCollection: UICollectionView!
-    
+    @IBOutlet weak var backButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,6 +46,7 @@ class LeaguesViewController: UIViewController {
         coreDataLeagues = presenter.fetchLeaguesFromCoreData()
         if(favLeagues){
             print("You are in favourite leagues tab")
+            backButton.isHidden = true
             coreDataLeagues = presenter.fetchLeaguesFromCoreData()
             if(coreDataLeagues.count == 0){
                 noLeaguesImage.isHidden = false
@@ -72,7 +73,6 @@ class LeaguesViewController: UIViewController {
 extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         //  successful request with array of response greater than 0
         if(responseResultArray.count != 0){
             noLeaguesImage.isHidden = true

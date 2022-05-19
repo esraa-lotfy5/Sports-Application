@@ -33,12 +33,9 @@ class LeaguesDetailsViewController: UIViewController {
     @IBOutlet weak var leaguesDetailsCollection: UICollectionView!
     @IBOutlet weak var latestEventsCollection: UICollectionView!
     @IBOutlet weak var teamsCollection: UICollectionView!
-    
-
-
-    
     @IBOutlet weak var leagueName: UILabel!
     @IBOutlet weak var upcomingEvents: UILabel!
+    @IBOutlet weak var heartButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +51,8 @@ class LeaguesDetailsViewController: UIViewController {
         for storedLeague in coreDataLeagues{
             if(league.idLeague == storedLeague.idLeague){
                 isLoved = true
+                heartButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                heartButton.tintColor = .red
                 print("league already in favourites")
             }
         }
@@ -79,10 +78,12 @@ class LeaguesDetailsViewController: UIViewController {
     
     @IBAction func favBtn(_ sender: UIButton) {
         if(isLoved){
-            isLoved = true
+            isLoved = false
             //delete league from coredata
             presenter.deleteLeagueFromCoreData(league: league)
             //make heart empty
+            heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            heartButton.tintColor = .gray
             
             print("not fav league")
         }else{
@@ -90,7 +91,8 @@ class LeaguesDetailsViewController: UIViewController {
             //  add league in coredata
             presenter.saveLeagueInCoreData(league: league)
             //  make heart filled
-            
+            heartButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            heartButton.tintColor = .red
             print("fav league")
         }
     }
