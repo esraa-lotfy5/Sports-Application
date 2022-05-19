@@ -30,6 +30,10 @@ class LeaguesDetailsViewController: UIViewController {
     // league name
    // var selectedLeagueName : String = ""
     
+    var latestEventsArray : [Event] = []
+    var upcomingEventsArray : [Event] = []
+
+    
     @IBOutlet weak var leaguesDetailsCollection: UICollectionView!
     @IBOutlet weak var latestEventsCollection: UICollectionView!
     @IBOutlet weak var teamsCollection: UICollectionView!
@@ -56,6 +60,12 @@ class LeaguesDetailsViewController: UIViewController {
                 print("league already in favourites")
             }
         }
+        
+        // calling presenter
+        
+       // let parameters = [ "id": league.idLeague]
+                 // print("parameters: \(parameters)")
+        presenter.getLeaguesDetailsListItems(urlID: 4, parameteres: ["id" : league.idLeague])
         
         leagueName.text = league.strLeague
         
@@ -101,9 +111,61 @@ class LeaguesDetailsViewController: UIViewController {
 
 extension LeaguesDetailsViewController : LeaguesDetailsViewControllerProtocol{
     func renderCollectionViewFromNetwork(response : Any ,isCountriesEqualNull : Bool){
+        if(isCountriesEqualNull){
+                   _ = (response as! NullReponse)
+                   responseResultArray = []
+               }else{
+            responseResultArray = (response as! EventsResponse).events
+                   print("reponseArray.count : \(responseResultArray.count)")
+            
+            let formatter = DateFormatter()
+            //2016-12-08 03:37:22 +0000
+            formatter.dateFormat = "yyyy-MM-dd"
+            let now = Date()
+            let dateString = formatter.string(from:now)
+              print("Date today is: \(dateString)")
+            
+//            guard let date1 = dateString1.toDate() else {
+//                       print("dateString1: \(dateString1) | Failed to cast to \"dd/MM/yyyy  hh:mm\"")
+//                       return
+//                   }
+
+            
+            responseResultArray.forEach { i in
+                guard let eventDate = i.dateEvent?.toDate()
+                    else{
+                        print("Failed to convert")
+                        return
+                              }
+                if eventDate >= now{
+                    upcomingEventsArray.append(i)
+                }
+                //if eventDate < now
+                else
+                {
+                    latestEventsArray.append(i)
+                }
+                  
+                //compare and put into array
+                 
+            }
+            print("upcoming array is: \(upcomingEventsArray)")
+            print("latest array is: \(latestEventsArray)")
+            
+               }
+               self.latestEventsCollection.reloadData()
         
     }
 }
+
+extension String {
+    func toDate() -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.date(from: self)
+    }
+}
+
 
 extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
@@ -185,4 +247,6 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
        }
    
 }
+
+
 

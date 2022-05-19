@@ -31,6 +31,13 @@ class LeaguesDetailsPresenter {
 
 extension LeaguesDetailsPresenter : LeaguesDetailsPresenterProtocol{
     func getLeaguesDetailsListItems(urlID: Int, parameteres: [String : String]) {
+        networkDelegate.fetchLists(urlID: urlID, paramerters: parameteres){[weak self] (result,error,isCountriesEqualNull)  in
+                   guard result != nil else{
+                       print("From leagues details presenter: Response = nil")
+                       return
+                   }
+                   self?.view.renderCollectionViewFromNetwork(response: result!, isCountriesEqualNull: isCountriesEqualNull)
+               }
         
     }
     
