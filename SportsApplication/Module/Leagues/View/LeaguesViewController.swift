@@ -18,6 +18,7 @@ class LeaguesViewController: UIViewController {
     var sportName : String = ""
     //var countryName : String = ""
     
+    
     var favLeagues : Bool = true
     
     @IBOutlet weak var sportLabel: UILabel!
@@ -118,7 +119,7 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
         //  to get selected cell
         let cell = sender as! UICollectionViewCell
         let indexPath = self.leaguesCollection!.indexPath(for: cell)
-        leaguesDetailsViewController.sportName = sportName
+        leaguesDetailsViewController.selectedLeagueName = responseResultArray[indexPath?.row ?? -1].strLeague ?? ""
         //        leaguesViewController.countryName = responseResultArray[indexPath?.row ?? -1].name_en ?? ""
         leaguesDetailsViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         
@@ -135,6 +136,7 @@ extension LeaguesViewController : LeaguesViewControllerProtocol{
             responseResultArray = (response as! LeaguesResponse).countries
             print("reponseArray.count : \(responseResultArray.count)")
             print("youtube link is : \(responseResultArray[1].strYoutube)")
+            
         }
         self.leaguesCollection.reloadData()
     }

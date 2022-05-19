@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+protocol LeaguesDetailsPresenterProtocol {
+    func getLeaguesDetailsListItems(urlID : Int, parameteres: [String : String])
+}
