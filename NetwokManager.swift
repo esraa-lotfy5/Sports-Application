@@ -23,10 +23,7 @@ class NetworkManager : NetworkManagerProtocol{
         "https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?",
         "https://www.thesportsdb.com/api/v1/json/2/eventsseason.php?id=4328"
         ]
-    //https://thesportsdb.com/api/v1/json/2/search_all_leagues.php?s=Soccer -> new
-    //"https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?" -> old
-    //"https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?c=England&s=Soccer"
-    
+
     //  for fetching -> AllSportsList, AllCountriesList, LeaguesList
     func fetchLists(urlID :Int , paramerters: [String : String], complitionHandler: @escaping (Any?, Error?, Bool) -> Void){
         

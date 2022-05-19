@@ -95,7 +95,7 @@ class NetworkManagerTests: XCTestCase {
                   return
               }
             print("number of events = \(events.count)")
-              XCTAssertEqual(events.count, 2, "error in API items' count") // true : 2
+              XCTAssertEqual(events.count, 100, "error in API items' count") // true : 100
               expectationOject.fulfill()
          }
          waitForExpectations(timeout: 15, handler: nil)

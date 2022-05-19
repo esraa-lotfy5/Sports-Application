@@ -73,7 +73,7 @@ class MockingNetworkManagerTests: XCTestCase {
                 return
             }
             print("events.count = \(events.count)")
-            XCTAssertEqual(teams.count, 2, "API failed") //true: 2
+            XCTAssertEqual(events.count, 2, "API failed") //true: 2
         }
     }
 }

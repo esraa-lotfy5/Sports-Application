@@ -10,4 +10,6 @@ import Foundation
 
 protocol LeaguesPresenterProtocol {
     func getLeaguesListItems(urlID : Int, parameteres: [String : String])
+    func deleteLeagueFromCoreData(league: CoreDataModel)
+    func fetchLeaguesFromCoreData() -> [CoreDataModel]
 }

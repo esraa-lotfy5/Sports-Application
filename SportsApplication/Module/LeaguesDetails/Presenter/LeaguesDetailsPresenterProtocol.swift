@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+protocol LeaguesDetailsPresenterProtocol {
+    func saveLeagueInCoreData(league: CoreDataModel)
+    func deleteLeagueFromCoreData(league: CoreDataModel)
+    func fetchLeaguesFromCoreData() -> [CoreDataModel]
+}

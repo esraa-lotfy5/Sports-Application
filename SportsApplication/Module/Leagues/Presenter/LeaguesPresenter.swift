@@ -8,15 +8,21 @@
 
 import Foundation
 
-class LeaguesPresenter : LeaguesPresenterProtocol{
+class LeaguesPresenter {
     var networkManager : NetworkManagerProtocol!
+    var localModel : CoreDataHandlingProtocol!
     var responseResult : Any!
     weak var view : LeaguesViewControllerProtocol!
     
-    init(networkService : NetworkManager, view : LeaguesViewControllerProtocol){
+    init(networkService : NetworkManager, localModel: CoreDataHandlingProtocol, view : LeaguesViewControllerProtocol){
         networkManager = networkService
+        self.localModel = localModel
         self.view = view
     }
+}
+
+
+extension LeaguesPresenter : LeaguesPresenterProtocol{
     
     func getLeaguesListItems(urlID : Int, parameteres: [String : String]){
         networkManager.fetchLists(urlID: urlID, paramerters: parameteres){[weak self] (result,error,isCountriesEqualNull)  in
@@ -26,5 +32,13 @@ class LeaguesPresenter : LeaguesPresenterProtocol{
             }
             self?.view.renderCollectionViewFromNetwork(response: result!, isCountriesEqualNull: isCountriesEqualNull)
         }
+    }
+    
+    func deleteLeagueFromCoreData(league: CoreDataModel){
+        self.localModel.deleteData(league: league)
+    }
+    
+    func fetchLeaguesFromCoreData() -> [CoreDataModel]{
+        self.localModel.fetchUpdatedData()
     }
 }

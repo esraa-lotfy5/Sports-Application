@@ -10,4 +10,5 @@ import Foundation
 
 protocol  LeaguesViewControllerProtocol : AnyObject{
     func renderCollectionViewFromNetwork(response : Any ,isCountriesEqualNull : Bool)
+    func reloadCollectionView()
 }

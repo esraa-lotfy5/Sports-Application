@@ -7,3 +7,38 @@
 //
 
 import Foundation
+
+class LeaguesDetailsPresenter {
+    var networkDelegate : NetworkManagerProtocol!
+    var localModel : CoreDataHandlingProtocol!
+    weak var view : LeaguesDetailsViewControllerProtocol!
+    
+    init(networkDelegate : NetworkManagerProtocol, localModel: CoreDataHandlingProtocol, view : LeaguesDetailsViewControllerProtocol) {
+        self.networkDelegate = networkDelegate
+        self.localModel = localModel
+        self.view = view
+        print("we are leaguesDetailsPresenter init")
+        /*guard let NWdelegate = self.networkDelegate else{
+            return
+        }
+        self.networkDelegate = NWdelegate
+        guard let locModel = self.localModel else{
+            return
+        }
+        self.localModel = locModel*/
+    }
+}
+
+extension LeaguesDetailsPresenter : LeaguesDetailsPresenterProtocol{
+    func saveLeagueInCoreData(league: CoreDataModel){
+        self.localModel.saveData(league: league)
+    }
+    
+    func deleteLeagueFromCoreData(league: CoreDataModel){
+        self.localModel.deleteData(league: league)
+    }
+    
+    func fetchLeaguesFromCoreData() -> [CoreDataModel]{
+        self.localModel.fetchUpdatedData()
+    }
+}
