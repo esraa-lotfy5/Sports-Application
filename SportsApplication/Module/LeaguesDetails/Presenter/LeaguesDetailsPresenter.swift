@@ -30,6 +30,10 @@ class LeaguesDetailsPresenter {
 }
 
 extension LeaguesDetailsPresenter : LeaguesDetailsPresenterProtocol{
+    func getLeaguesDetailsListItems(urlID: Int, parameteres: [String : String]) {
+        
+    }
+    
     func saveLeagueInCoreData(league: CoreDataModel){
         self.localModel.saveData(league: league)
     }

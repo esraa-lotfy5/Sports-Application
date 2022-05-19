@@ -25,17 +25,16 @@ class LeaguesDetailsViewController: UIViewController {
     //var sportName : String = ""
     var isLoved : Bool = false
     
+    //  response result array from network
+    var responseResultArray  : [Event] = []
+    // league name
+   // var selectedLeagueName : String = ""
+    
     @IBOutlet weak var leaguesDetailsCollection: UICollectionView!
     @IBOutlet weak var latestEventsCollection: UICollectionView!
     @IBOutlet weak var teamsCollection: UICollectionView!
     
-    
-       //  object of presenter
-       var presenter : LeaguesDetailsPresenterProtocol!
-       //  response result array from network
-       var responseResultArray  : [Event] = []
-       // league name
-       var selectedLeagueName : String = ""
+
 
     
     @IBOutlet weak var leagueName: UILabel!
@@ -99,7 +98,9 @@ class LeaguesDetailsViewController: UIViewController {
 
 
 extension LeaguesDetailsViewController : LeaguesDetailsViewControllerProtocol{
-    
+    func renderCollectionViewFromNetwork(response : Any ,isCountriesEqualNull : Bool){
+        
+    }
 }
 
 extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{

@@ -43,6 +43,7 @@ class LeaguesViewController: UIViewController {
         // create refernce to entity/table
         let managedContext = appDelegate.persistentContainer.viewContext
         presenter = LeaguesPresenter(networkService: NetworkManager.delegate, localModel:CoreDataHandling(context: managedContext) , view: self)
+        coreDataLeagues = presenter.fetchLeaguesFromCoreData()
         if(favLeagues){
             print("You are in favourite leagues tab")
             coreDataLeagues = presenter.fetchLeaguesFromCoreData()
