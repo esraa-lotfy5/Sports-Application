@@ -18,7 +18,7 @@ class LeaguesViewController: UIViewController {
     var coreDataLeagues : [CoreDataModel] = []
     //  country Name and Sport Name
     var sportName : String = ""
-    //var countryName : String = ""
+
     //  assume by deafult we are in favourites screen
     var favLeagues : Bool = true
     
@@ -146,7 +146,7 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
         //  to get selected cell
         let cell = sender as! UICollectionViewCell
         let indexPath = self.leaguesCollection!.indexPath(for: cell)
-        //print(" id : \(responseResultArray[indexPath?.row ?? -1].idLeague ?? "")")
+
         if(responseResultArray.count != 0){
             leaguesDetailsViewController.league.idLeague = responseResultArray[indexPath?.row ?? -1].idLeague ?? ""
             leaguesDetailsViewController.league.strLeague = responseResultArray[indexPath?.row ?? -1].strLeague ?? ""
@@ -165,7 +165,6 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
             }
         }
         leaguesDetailsViewController.allLeaguesScreen = self
-        
         leaguesDetailsViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         
         self.present(leaguesDetailsViewController, animated: true)
@@ -182,6 +181,7 @@ extension LeaguesViewController : LeaguesViewControllerProtocol{
             responseResultArray = (response as! LeaguesResponse).countries
             print("reponseArray.count : \(responseResultArray.count)")
             print("youtube link is : \(responseResultArray[1].strYoutube)")
+            
         }
         self.leaguesCollection.reloadData()
     }
