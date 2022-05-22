@@ -215,6 +215,21 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
             cell.contentView.backgroundColor = UIColor.black
                    
             cell.firstTeamName.textColor  = UIColor.white
+            
+            //  cell UI (corner radius for image and cell/layer, background color)
+            //  first team image
+            cell.firstTeam.layer.cornerRadius = cell.firstTeam.frame.size.width/2
+            cell.firstTeam.clipsToBounds = true
+            cell.firstTeam.backgroundColor = UIColor.white
+            
+            //`second team image
+            cell.secondTeam.layer.cornerRadius = cell.secondTeam.frame.size.width/2
+            cell.secondTeam.clipsToBounds = true
+            cell.secondTeam.backgroundColor = UIColor.white
+            
+            // cell corner
+            cell.clipsToBounds = true
+            cell.layer.cornerRadius = 25
                                       
             return cell
         case latestEventsCollection:
@@ -251,12 +266,12 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
        layout collectionViewLayout: UICollectionViewLayout,
        sizeForItemAt indexPath: IndexPath) -> CGSize {
            
-        let padding: CGFloat =  25
+        let padding: CGFloat =  16
         let collectionViewSize = collectionView.frame.size.width - padding
         
         if (collectionView == leaguesDetailsCollection || collectionView == latestEventsCollection) {
             
-                      return CGSize(width: collectionViewSize/1, height: 140)
+                      return CGSize(width: collectionViewSize/1, height: 150)
         }
         
         return CGSize(width: collectionViewSize/3, height: 140)
