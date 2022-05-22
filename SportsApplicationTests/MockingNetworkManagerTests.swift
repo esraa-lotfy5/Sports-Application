@@ -30,17 +30,6 @@ class MockingNetworkManagerTests: XCTestCase {
         }
     }
     
-    //test for all countries list
-    func testFetchCountriesList(){
-        mockObject.fetchLists(urlID: 1, paramerters: [:]) { (countries, error, isNull) in
-            guard let countries = (countries as? CountriesResponse)?.countries else{
-                XCTFail()
-                return
-            }
-            XCTAssertEqual(countries.count, 257, "API failed") //true: 257
-        }
-    }
-    
     //test for all leagues list
    func testFetchLeaguesList(){
     mockObject.fetchLists(urlID: 2, paramerters: ["s":"Soccer"]) { (leagues, error, isNull) in

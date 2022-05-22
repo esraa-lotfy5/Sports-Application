@@ -13,7 +13,7 @@ class NetworkManager : NetworkManagerProtocol{
     private init(){}
     static let delegate = NetworkManager()
     // urls[0]: all sports url
-    // urls[1]: all countries
+    // urls[1]: all countries -> unused anymore
     // urls[2]: all leagues
     // urls[3]: all teams ->  s=Soccer&c=Spain"
     let urls = [
@@ -45,11 +45,6 @@ class NetworkManager : NetworkManagerProtocol{
                     let info = try decoder.decode(SportsResponse.self, from: data)
                     complitionHandler(info, nil,false)
                     //print("Data from fetching sports list : \n \(info)")
-                    break
-                case 1:
-                    let info = try decoder.decode(CountriesResponse.self, from: data)
-                    complitionHandler(info, nil, false)
-                    //print("Data from fetching countries list : \n \(info)")
                     break
                 case 2:
                     let info = try decoder.decode(LeaguesResponse.self, from: data)

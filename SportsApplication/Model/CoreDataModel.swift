@@ -16,4 +16,5 @@ class CoreDataModel : NSObject{
     var strLogo : String!
     var strSport : String!
     var strYoutube : String!
+    var strCountry : String!
 }

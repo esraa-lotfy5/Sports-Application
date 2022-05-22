@@ -10,4 +10,6 @@ import Foundation
 
 protocol LeaguesDetailsViewControllerProtocol : AnyObject{
     func renderCollectionViewFromNetwork(response : Any ,isCountriesEqualNull : Bool)
+    //  for teams network response
+    func renderTeamsCollectionViewFromNetwork(response : Any, isCountriesEqualNull : Bool)
 }

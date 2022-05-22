@@ -22,7 +22,6 @@ class LeaguesDetailsViewController: UIViewController {
     //  saved leagues in coredata
     var coreDataLeagues : [CoreDataModel] = []
     
-    //var sportName : String = ""
     var isLoved : Bool = false
     
     //  response result array from network
@@ -30,8 +29,10 @@ class LeaguesDetailsViewController: UIViewController {
     // league name
    // var selectedLeagueName : String = ""
     
+    //  response result arrays from network
     var latestEventsArray : [Event] = []
     var upcomingEventsArray : [Event] = []
+    var teamsArray  : [Team] = []
 
     
     @IBOutlet weak var leaguesDetailsCollection: UICollectionView!
@@ -62,12 +63,14 @@ class LeaguesDetailsViewController: UIViewController {
         }
         
         // calling presenter
-        
-       // let parameters = [ "id": league.idLeague]
-                 // print("parameters: \(parameters)")
-        presenter.getLeaguesDetailsListItems(urlID: 4, parameteres: ["id" : league.idLeague])
+
+        presenter.getLeaguesDetailsListItems(urlID: 4, parameteres: ["id" : league.idLeague])       //  events
+        presenter.getLeaguesDetailsListItems(urlID: 3, parameteres: ["s":league.strSport,"c":league.strCountry])
         
         leagueName.text = league.strLeague
+        
+        //  teams collection view presenter
+        //["s":"Soccer", "c":"England"]
         
        //  collection view protocol conformation
        leaguesDetailsCollection.delegate = self
@@ -112,31 +115,29 @@ class LeaguesDetailsViewController: UIViewController {
 extension LeaguesDetailsViewController : LeaguesDetailsViewControllerProtocol{
     func renderCollectionViewFromNetwork(response : Any ,isCountriesEqualNull : Bool){
         if(isCountriesEqualNull){
-                   _ = (response as! NullReponse)
-                   responseResultArray = []
-               }else{
+           _ = (response as! NullReponse)
+           responseResultArray = []
+       }else{
             responseResultArray = (response as! EventsResponse).events
-                   print("reponseArray.count : \(responseResultArray.count)")
+           print("reponseArray.count : \(responseResultArray.count)")
             
             let formatter = DateFormatter()
             //2016-12-08 03:37:22 +0000
             formatter.dateFormat = "yyyy-MM-dd"
             let now = Date()
             let dateString = formatter.string(from:now)
-              print("Date today is: \(dateString)")
+            print("Date today is: \(dateString)")
             
 //            guard let date1 = dateString1.toDate() else {
 //                       print("dateString1: \(dateString1) | Failed to cast to \"dd/MM/yyyy  hh:mm\"")
 //                       return
 //                   }
-
-            
             responseResultArray.forEach { i in
-                guard let eventDate = i.dateEvent?.toDate()
-                    else{
-                        print("Failed to convert")
-                        return
-                              }
+            guard let eventDate = i.dateEvent?.toDate()
+                else{
+                    print("Failed to convert")
+                    return
+                }
                 if eventDate >= now{
                     upcomingEventsArray.append(i)
                 }
@@ -145,16 +146,24 @@ extension LeaguesDetailsViewController : LeaguesDetailsViewControllerProtocol{
                 {
                     latestEventsArray.append(i)
                 }
-                  
                 //compare and put into array
-                 
             }
             print("upcoming array is: \(upcomingEventsArray)")
             print("latest array is: \(latestEventsArray)")
-            
-               }
-               self.latestEventsCollection.reloadData()
-        
+            }
+            self.latestEventsCollection.reloadData()
+    }
+    
+    func renderTeamsCollectionViewFromNetwork(response : Any, isCountriesEqualNull : Bool){
+        let allTeams = (response as! TeamsResponse).teams
+        for team in allTeams{
+            if(team.idLeague == league.idLeague){
+                teamsArray.append(team)
+            }
+        }
+        print("all teams ReponseArray.count : \(allTeams.count)")
+        print("league teams ReponseArray.count : \(teamsArray.count)")
+        teamsCollection.reloadData()
     }
 }
 
@@ -178,7 +187,7 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
                case latestEventsCollection:
                    return 6
                case teamsCollection:
-                   return 7
+                return teamsArray.count
                default:
                    return 6
                }
@@ -189,12 +198,12 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
         switch collectionView {
         case leaguesDetailsCollection:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LeaguesDetailsCollectionViewCell
-                   cell.firstTeamName.text = "Liverpool"
-                   cell.secondTeamName.text = "Manchester"
-                   cell.leagueTime.text = "9:00"
-                   cell.leagueDate.text = "30-6-2022"
+            cell.firstTeamName.text = "Liverpool"
+            cell.secondTeamName.text = "Manchester"
+            cell.leagueTime.text = "9:00"
+            cell.leagueDate.text = "30-6-2022"
                    
-                   cell.contentView.layer.cornerRadius = 15.0
+            cell.contentView.layer.cornerRadius = 15.0
             
             // to make image  darker
             let gradientLayer = CAGradientLayer()
@@ -203,28 +212,36 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
             cell.firstTeam.layer.addSublayer(gradientLayer)
             cell.secondTeam.layer.addSublayer(gradientLayer)
 
-                   cell.contentView.backgroundColor = UIColor.black
+            cell.contentView.backgroundColor = UIColor.black
                    
-                   cell.firstTeamName.textColor  = UIColor.white
-                   
-                   
-                   return cell
+            cell.firstTeamName.textColor  = UIColor.white
+                                      
+            return cell
         case latestEventsCollection:
             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! LatestEventsCollectionViewCell
                       
-                      cell2.firstTeamName.text = "Liverpool"
-                      cell2.secondTeamName.text = "Manchester"
-                      cell2.time.text = "9:00"
-                      cell2.date.text = "30-6-2022"
-                      cell2.score.text = "2-2"
+            cell2.firstTeamName.text = "Liverpool"
+            cell2.secondTeamName.text = "Manchester"
+            cell2.time.text = "9:00"
+            cell2.date.text = "30-6-2022"
+            cell2.score.text = "2-2"
                       
-                      return cell2
-            case teamsCollection:
-                let cell3 = collectionView.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath) as! TeamsCollectionViewCell
+            return cell2
+        case teamsCollection:
+            print("We are in drawing team cells")
+            let cell3 = collectionView.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath) as! TeamsCollectionViewCell
                                  
-                cell3.teamName.text = "Arsenal"
+            cell3.teamName.text = teamsArray[indexPath.row].strTeam
+            let imageURL = URL(string: teamsArray[indexPath.row].strTeamBadge ?? "")
+            cell3.teamImg.kf.setImage(with: imageURL)
+            //  cell UI (corner radius for image and cell/layer, background color)
+            cell3.teamImg.layer.cornerRadius = cell3.teamImg.frame.size.width/2
+            cell3.teamImg.clipsToBounds = true
+            cell3.teamImg.backgroundColor = UIColor.white
+            cell3.layer.cornerRadius = 15
+            cell3.layer.borderColor = UIColor.darkGray.cgColor
             
-                       return cell3
+            return cell3
         default:
            return UICollectionViewCell()
         }
@@ -245,8 +262,19 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
         return CGSize(width: collectionViewSize/3, height: 140)
           
        }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("inside prepare for segue in leagues\n")
+        let teamsDetailsViewController : TeamsViewController = segue.destination as! TeamsViewController
+        //  to get selected cell
+        let cell = sender as! UICollectionViewCell
+        let indexPath = self.teamsCollection!.indexPath(for: cell)
+        teamsDetailsViewController.team = teamsArray[indexPath?.row ?? -1]
+        teamsDetailsViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        
+        self.present(teamsDetailsViewController, animated: true)
+    }
    
 }
-
 
 

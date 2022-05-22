@@ -10,7 +10,6 @@ import UIKit
 
 class TeamsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var teamImg: UIImageView!
-    
     @IBOutlet weak var teamName: UILabel!
     
 }

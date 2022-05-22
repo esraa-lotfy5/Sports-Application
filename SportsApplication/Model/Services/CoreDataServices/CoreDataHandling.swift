@@ -35,6 +35,7 @@ class CoreDataHandling : CoreDataHandlingProtocol{
                 league.strBadge = (leaguesNSManagedObject[i].value(forKey: "strBadge") as! String)
                 league.strLogo = (leaguesNSManagedObject[i].value(forKey: "strLogo") as! String)
                 league.strYoutube = (leaguesNSManagedObject[i].value(forKey: "strYoutube") as! String)
+                league.strCountry = (leaguesNSManagedObject[i].value(forKey: "strCountry") as! String)
                 leagues.append(league)
             }
             print("leagues.count : \(leagues.count)")
@@ -57,6 +58,7 @@ class CoreDataHandling : CoreDataHandlingProtocol{
         copiedLeagues.setValue(league.strBadge , forKey: "strBadge")
         copiedLeagues.setValue(league.strLogo , forKey: "strLogo")
         copiedLeagues.setValue(league.strYoutube , forKey: "strYoutube")
+        copiedLeagues.setValue(league.strCountry , forKey: "strCountry")
         do{
             try managedContext.save()
             print("Successfully inserted")

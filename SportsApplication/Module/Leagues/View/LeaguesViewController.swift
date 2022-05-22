@@ -155,6 +155,7 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
             leaguesDetailsViewController.league.strBadge = responseResultArray[indexPath?.row ?? -1].strBadge ?? ""
             leaguesDetailsViewController.league.strLogo = responseResultArray[indexPath?.row ?? -1].strLogo ?? ""
             leaguesDetailsViewController.league.strYoutube = responseResultArray[indexPath?.row ?? -1].strYoutube ?? ""
+            leaguesDetailsViewController.league.strCountry = responseResultArray[indexPath?.row ?? -1].strCountry ?? ""
         }else{
             if(coreDataLeagues.count != 0){
                 leaguesDetailsViewController.league.idLeague = coreDataLeagues[indexPath?.row ?? -1].idLeague ?? ""
@@ -163,6 +164,7 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
                 leaguesDetailsViewController.league.strBadge = coreDataLeagues[indexPath?.row ?? -1].strBadge ?? ""
                 leaguesDetailsViewController.league.strLogo = coreDataLeagues[indexPath?.row ?? -1].strLogo ?? ""
                 leaguesDetailsViewController.league.strYoutube = coreDataLeagues[indexPath?.row ?? -1].strYoutube ?? ""
+                leaguesDetailsViewController.league.strCountry = coreDataLeagues[indexPath?.row ?? -1].strCountry ?? ""
             }
         }
         leaguesDetailsViewController.allLeaguesScreen = self

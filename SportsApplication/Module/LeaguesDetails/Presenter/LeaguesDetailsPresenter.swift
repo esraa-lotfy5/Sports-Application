@@ -36,8 +36,19 @@ extension LeaguesDetailsPresenter : LeaguesDetailsPresenterProtocol{
                        print("From leagues details presenter: Response = nil")
                        return
                    }
-                   self?.view.renderCollectionViewFromNetwork(response: result!, isCountriesEqualNull: isCountriesEqualNull)
-               }
+            switch (urlID) {
+                case 3:     // teams
+                    self?.view.renderTeamsCollectionViewFromNetwork(response: result!, isCountriesEqualNull: isCountriesEqualNull)
+                    break
+                case 4:     // events
+                    self?.view.renderCollectionViewFromNetwork(response: result!, isCountriesEqualNull: isCountriesEqualNull)
+                    break
+                default:
+                    print("false urlID")
+                    break;
+            }
+                   
+       }
         
     }
     
@@ -52,4 +63,12 @@ extension LeaguesDetailsPresenter : LeaguesDetailsPresenterProtocol{
     func fetchLeaguesFromCoreData() -> [CoreDataModel]{
         self.localModel.fetchUpdatedData()
     }
+    
 }
+
+
+
+//var responseResult : SportsResponse!
+
+
+

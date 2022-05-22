@@ -36,20 +36,6 @@ class NetworkManagerTests: XCTestCase {
        waitForExpectations(timeout: 5, handler: nil)
    }
     
-    //all countires
-    func testFetchCountriesList(){
-          let expectationOject = expectation(description: "Waiting for the response")
-        networkDelegate.fetchLists(urlID: 1, paramerters: [:]){(result, error,isNull) -> Void in
-              guard let countries = (result as? CountriesResponse)?.countries else{
-                  XCTFail()
-                  expectationOject.fulfill()
-                  return
-              }
-              XCTAssertEqual(countries.count, 257, "error in API items' count") // true : 257
-              expectationOject.fulfill()
-         }
-         waitForExpectations(timeout: 5, handler: nil)
-     }
     
     //all leagues
     func testFetchLeaguesList(){
