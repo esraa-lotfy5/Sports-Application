@@ -231,18 +231,9 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
             
             gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
             cell.eventImg.layer.addSublayer(gradientLayer)
-            //cell.eventImg.layer.addSublayer(gradientLayer)
 
-            cell.contentView.backgroundColor = UIColor.black
-                   
-           
-            
-            //  cell UI (corner radius for image and cell/layer, background color)
-            //  first team image
-//            cell.eventImg.layer.cornerRadius = cell.eventImg.frame.size.width/2
-//            cell.eventImg.clipsToBounds = true
-//            cell.eventImg.backgroundColor = UIColor.white
-            
+            cell.contentView.backgroundColor = UIColor.lightGray
+
             // cell corner
             cell.clipsToBounds = true
             cell.layer.cornerRadius = 25
@@ -251,10 +242,15 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
             
         case latestEventsCollection:
             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! LatestEventsCollectionViewCell
-                   
-            cell2.firstTeamName.text = latestEventsArray[indexPath.row].strHomeTeam
-            cell2.secondTeamName.text = latestEventsArray[indexPath.row].strAwayTeam
-            cell2.time.text = latestEventsArray[indexPath.row].strTime
+            if(latestEventsArray[indexPath.row].intHomeScore ?? "" != ""){
+                cell2.score.text = "\(latestEventsArray[indexPath.row].intHomeScore ?? "") - \(latestEventsArray[indexPath.row].intAwayScore ?? "")"
+            }
+            let strTime = latestEventsArray[indexPath.row].strTime ?? ""
+            if(strTime != ""){
+                let timeArr = strTime.split(separator: ":")
+                cell2.time.text = "\(timeArr[0]):\(timeArr[1])"
+            }
+            
             cell2.date.text = latestEventsArray[indexPath.row].dateEvent
                            
        let ImageURL = URL(string: latestEventsArray[indexPath.row].strThumb ?? "")
@@ -267,44 +263,33 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
         let gradientLayer = CAGradientLayer()
                      
     gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-      cell2.eventImg.layer.addSublayer(gradientLayer)
-                     //cell.eventImg.layer.addSublayer(gradientLayer)
-
-             cell2.contentView.backgroundColor = UIColor.black
-                            
-                    
+    cell2.eventImg.layer.addSublayer(gradientLayer)
+        cell2.contentView.backgroundColor = UIColor.lightGray
                      
-                     //  cell UI (corner radius for image and cell/layer, background color)
-                     //  first team image
-//                     cell2.eventImg.layer.cornerRadius = cell2.eventImg.frame.size.width/2
-//               cell2.eventImg.clipsToBounds = true
-//           cell2.eventImg.backgroundColor = UIColor.white
-                     
-                     // cell corner
-          cell2.clipsToBounds = true
-           cell2.layer.cornerRadius = 25
+     // cell corner
+      cell2.clipsToBounds = true
+      cell2.layer.cornerRadius = 25
+      return cell2
             
-            return cell2
-            
-        case teamsCollection:
-            print("We are in drawing team cells")
-            let cell3 = collectionView.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath) as! TeamsCollectionViewCell
+    case teamsCollection:
+        print("We are in drawing team cells")
+        let cell3 = collectionView.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath) as! TeamsCollectionViewCell
                                  
-            cell3.teamName.text = teamsArray[indexPath.row].strTeam
+        cell3.teamName.text = teamsArray[indexPath.row].strTeam
             let imageURL = URL(string: teamsArray[indexPath.row].strTeamBadge ?? "")
-            cell3.teamImg.kf.setImage(with: imageURL)
-            //  cell UI (corner radius for image and cell/layer, background color)
-            cell3.teamImg.layer.cornerRadius = cell3.teamImg.frame.size.width/2
-            cell3.teamImg.clipsToBounds = true
-            cell3.teamImg.backgroundColor = UIColor.white
-            cell3.layer.cornerRadius = 15
-            cell3.layer.borderColor = UIColor.darkGray.cgColor
+        cell3.teamImg.kf.setImage(with: imageURL)
+        //  cell UI (corner radius for image and cell/layer, background color)
+        cell3.teamImg.layer.cornerRadius =      cell3.teamImg.frame.size.width/2
+        cell3.teamImg.clipsToBounds = true
+        cell3.teamImg.backgroundColor = UIColor.white
+        cell3.layer.cornerRadius = 15
+        cell3.layer.borderColor = UIColor.darkGray.cgColor
             
-            return cell3
-        default:
-           return UICollectionViewCell()
-        }
+        return cell3
+    default:
+       return UICollectionViewCell()
     }
+}
     
     func collectionView(_ collectionView: UICollectionView,
        layout collectionViewLayout: UICollectionViewLayout,
