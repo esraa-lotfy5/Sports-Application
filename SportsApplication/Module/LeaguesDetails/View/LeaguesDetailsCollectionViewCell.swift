@@ -10,9 +10,6 @@ import UIKit
 
 class LeaguesDetailsCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var firstTeam: UIImageView!
-    
-    @IBOutlet weak var secondTeam: UIImageView!
     
     @IBOutlet weak var leagueTime: UILabel!
     
@@ -22,6 +19,6 @@ class LeaguesDetailsCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var secondTeamName: UILabel!
     
-    
+    @IBOutlet weak var eventImg: UIImageView!
     
 }

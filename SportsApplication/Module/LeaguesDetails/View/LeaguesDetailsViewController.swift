@@ -183,11 +183,16 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
         
         switch collectionView {
                case leaguesDetailsCollection:
-                   return 2
+                if upcomingEventsArray.count != 0 {
+                    return upcomingEventsArray.count
+                }
+                else{
+                    return 1
+                      }
                case latestEventsCollection:
-                   return 6
+                   return latestEventsArray.count
                case teamsCollection:
-                return teamsArray.count
+                    return teamsArray.count
                default:
                    return 6
                }
@@ -198,50 +203,89 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
         switch collectionView {
         case leaguesDetailsCollection:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LeaguesDetailsCollectionViewCell
-            cell.firstTeamName.text = "Liverpool"
-            cell.secondTeamName.text = "Manchester"
-            cell.leagueTime.text = "9:00"
-            cell.leagueDate.text = "30-6-2022"
-                   
+            
+            if upcomingEventsArray.count != 0{
+                cell.firstTeamName.text = upcomingEventsArray[indexPath.row].strHomeTeam
+                cell.secondTeamName.text = upcomingEventsArray[indexPath.row].strAwayTeam
+                cell.leagueTime.text = upcomingEventsArray[indexPath.row].strTime
+                cell.leagueDate.text = upcomingEventsArray[indexPath.row].dateEvent
+                
+                 let ImageURL = URL(string: upcomingEventsArray[indexPath.row].strThumb ?? "")
+                
+                cell.eventImg.kf.setImage(with: ImageURL)
+                
+                // cell.firstTeamName.textColor  = UIColor.white
+
+            }
+            else{
+                //no upcoming events found
+                print("no upcoming events found")
+                cell.eventImg.image = UIImage(named: "no upcoming events")
+
+            }
+                
             cell.contentView.layer.cornerRadius = 15.0
             
             // to make image  darker
             let gradientLayer = CAGradientLayer()
             
             gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-            cell.firstTeam.layer.addSublayer(gradientLayer)
-            cell.secondTeam.layer.addSublayer(gradientLayer)
+            cell.eventImg.layer.addSublayer(gradientLayer)
+            //cell.eventImg.layer.addSublayer(gradientLayer)
 
             cell.contentView.backgroundColor = UIColor.black
                    
-            cell.firstTeamName.textColor  = UIColor.white
+           
             
             //  cell UI (corner radius for image and cell/layer, background color)
             //  first team image
-            cell.firstTeam.layer.cornerRadius = cell.firstTeam.frame.size.width/2
-            cell.firstTeam.clipsToBounds = true
-            cell.firstTeam.backgroundColor = UIColor.white
-            
-            //`second team image
-            cell.secondTeam.layer.cornerRadius = cell.secondTeam.frame.size.width/2
-            cell.secondTeam.clipsToBounds = true
-            cell.secondTeam.backgroundColor = UIColor.white
+//            cell.eventImg.layer.cornerRadius = cell.eventImg.frame.size.width/2
+//            cell.eventImg.clipsToBounds = true
+//            cell.eventImg.backgroundColor = UIColor.white
             
             // cell corner
             cell.clipsToBounds = true
             cell.layer.cornerRadius = 25
                                       
             return cell
+            
         case latestEventsCollection:
             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! LatestEventsCollectionViewCell
-                      
-            cell2.firstTeamName.text = "Liverpool"
-            cell2.secondTeamName.text = "Manchester"
-            cell2.time.text = "9:00"
-            cell2.date.text = "30-6-2022"
-            cell2.score.text = "2-2"
-                      
+                   
+            cell2.firstTeamName.text = latestEventsArray[indexPath.row].strHomeTeam
+            cell2.secondTeamName.text = latestEventsArray[indexPath.row].strAwayTeam
+            cell2.time.text = latestEventsArray[indexPath.row].strTime
+            cell2.date.text = latestEventsArray[indexPath.row].dateEvent
+                           
+       let ImageURL = URL(string: latestEventsArray[indexPath.row].strThumb ?? "")
+                           
+       cell2.eventImg.kf.setImage(with: ImageURL)
+            
+            cell2.contentView.layer.cornerRadius = 15.0
+                     
+                     // to make image  darker
+        let gradientLayer = CAGradientLayer()
+                     
+    gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+      cell2.eventImg.layer.addSublayer(gradientLayer)
+                     //cell.eventImg.layer.addSublayer(gradientLayer)
+
+             cell2.contentView.backgroundColor = UIColor.black
+                            
+                    
+                     
+                     //  cell UI (corner radius for image and cell/layer, background color)
+                     //  first team image
+//                     cell2.eventImg.layer.cornerRadius = cell2.eventImg.frame.size.width/2
+//               cell2.eventImg.clipsToBounds = true
+//           cell2.eventImg.backgroundColor = UIColor.white
+                     
+                     // cell corner
+          cell2.clipsToBounds = true
+           cell2.layer.cornerRadius = 25
+            
             return cell2
+            
         case teamsCollection:
             print("We are in drawing team cells")
             let cell3 = collectionView.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath) as! TeamsCollectionViewCell

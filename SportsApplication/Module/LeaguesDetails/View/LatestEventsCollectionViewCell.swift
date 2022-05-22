@@ -10,8 +10,8 @@ import UIKit
 
 class LatestEventsCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var firstTeamImg: UIImageView!
-    @IBOutlet weak var secndTeamImg: UIImageView!
+   
+    @IBOutlet weak var eventImg: UIImageView!
     @IBOutlet weak var firstTeamName: UILabel!
     @IBOutlet weak var secondTeamName: UILabel!
     @IBOutlet weak var score: UILabel!
