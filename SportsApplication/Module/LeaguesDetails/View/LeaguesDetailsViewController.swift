@@ -34,6 +34,8 @@ class LeaguesDetailsViewController: UIViewController {
     var upcomingEventsArray : [Event] = []
     var teamsArray  : [Team] = []
 
+    @IBOutlet weak var noUpcomingEvents: UIImageView!
+    
     
     @IBOutlet weak var leaguesDetailsCollection: UICollectionView!
     @IBOutlet weak var latestEventsCollection: UICollectionView!
@@ -114,10 +116,10 @@ class LeaguesDetailsViewController: UIViewController {
 
 extension LeaguesDetailsViewController : LeaguesDetailsViewControllerProtocol{
     func renderCollectionViewFromNetwork(response : Any ,isCountriesEqualNull : Bool){
-        if(isCountriesEqualNull){
-           _ = (response as! NullReponse)
-           responseResultArray = []
-       }else{
+//        if(isCountriesEqualNull){
+//           _ = (response as! NullReponse)
+//           responseResultArray = []
+//       }else{
             responseResultArray = (response as! EventsResponse).events
            print("reponseArray.count : \(responseResultArray.count)")
             
@@ -150,7 +152,7 @@ extension LeaguesDetailsViewController : LeaguesDetailsViewControllerProtocol{
             }
             print("upcoming array is: \(upcomingEventsArray)")
             print("latest array is: \(latestEventsArray)")
-            }
+            //}
             self.latestEventsCollection.reloadData()
     }
     
@@ -184,10 +186,17 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
         switch collectionView {
                case leaguesDetailsCollection:
                 if upcomingEventsArray.count != 0 {
+                    print("inside if, there is upcoming events")
+                    //let the image be hidden
+                    noUpcomingEvents.isHidden = true
                     return upcomingEventsArray.count
                 }
                 else{
-                    return 1
+                    print("inside else, there is no upcoming events")
+
+                   // let the image be unhidden
+                    noUpcomingEvents.image = UIImage(named: "noLeagues")
+                    noUpcomingEvents.isHidden = false
                       }
                case latestEventsCollection:
                    return latestEventsArray.count
@@ -196,6 +205,7 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
                default:
                    return 6
                }
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -205,14 +215,26 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LeaguesDetailsCollectionViewCell
             
             if upcomingEventsArray.count != 0{
-                cell.firstTeamName.text = upcomingEventsArray[indexPath.row].strHomeTeam
-                cell.secondTeamName.text = upcomingEventsArray[indexPath.row].strAwayTeam
-                cell.leagueTime.text = upcomingEventsArray[indexPath.row].strTime
+                
+                //let the image be unhidden
+                noUpcomingEvents.isHidden = true
+                
+//                cell.firstTeamName.text = upcomingEventsArray[indexPath.row].strHomeTeam
+//                cell.secondTeamName.text = upcomingEventsArray[indexPath.row].strAwayTeam
+                
+                let strTime = upcomingEventsArray[indexPath.row].strTime ?? ""
+                if(strTime != ""){
+                    let timeArr = strTime.split(separator: ":")
+                    cell.leagueTime.text = "\(timeArr[0]):\(timeArr[1])"
+                }
+                
+//                cell.leagueTime.text = upcomingEventsArray[indexPath.row].strTime
                 cell.leagueDate.text = upcomingEventsArray[indexPath.row].dateEvent
                 
                  let ImageURL = URL(string: upcomingEventsArray[indexPath.row].strThumb ?? "")
                 
                 cell.eventImg.kf.setImage(with: ImageURL)
+                
                 
                 // cell.firstTeamName.textColor  = UIColor.white
 
@@ -220,8 +242,11 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
             else{
                 //no upcoming events found
                 print("no upcoming events found")
-                cell.eventImg.image = UIImage(named: "no upcoming events")
+            noUpcomingEvents.image = UIImage(named: "noLeagues")
 
+                //let the image be unhidden
+                noUpcomingEvents.isHidden = false
+                
             }
                 
             cell.contentView.layer.cornerRadius = 15.0

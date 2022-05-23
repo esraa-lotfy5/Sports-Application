@@ -15,9 +15,8 @@ class LeaguesDetailsCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var leagueDate: UILabel!
     
-    @IBOutlet weak var firstTeamName: UILabel!
+    @IBOutlet weak var leagueScore: UILabel!
     
-    @IBOutlet weak var secondTeamName: UILabel!
     
     @IBOutlet weak var eventImg: UIImageView!
     
