@@ -12,6 +12,7 @@ import Kingfisher
 
 class SportsViewController: UIViewController{
     //  object of presenter
+    //var homeViewModel : HomeViewModel!
     var presenter : SportsPresenterProtocol!
     //  response result array from network
     var responseResultArray  : [Sport] = []
@@ -40,7 +41,7 @@ class SportsViewController: UIViewController{
         sportsCollection!.collectionViewLayout = layout
         
         //  variables initializations
-        presenter = SportsPresenter(networkService: NetworkManager.delegate, view: self)
+    presenter = SportsPresenter(networkService: NetworkManager.delegate, view: self)
         presenter.getSportsListItems(urlID: 0)
         
         //

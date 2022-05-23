@@ -188,6 +188,8 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
                 if upcomingEventsArray.count != 0 {
                     print("inside if, there is upcoming events")
                     //let the image be hidden
+                    //"no upcoming events"
+                    //noUpcomingEvents.image = UIImage(named: "no upcoming events")
                     noUpcomingEvents.isHidden = true
                     return upcomingEventsArray.count
                 }
@@ -195,7 +197,7 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
                     print("inside else, there is no upcoming events")
 
                    // let the image be unhidden
-                    noUpcomingEvents.image = UIImage(named: "noLeagues")
+                    noUpcomingEvents.image = UIImage(named: "no-upcoming-events ")
                     noUpcomingEvents.isHidden = false
                       }
                case latestEventsCollection:
@@ -205,7 +207,7 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
                default:
                    return 6
                }
-        return 1
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -215,49 +217,38 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LeaguesDetailsCollectionViewCell
             
             if upcomingEventsArray.count != 0{
-                
                 //let the image be unhidden
                 noUpcomingEvents.isHidden = true
-                
-//                cell.firstTeamName.text = upcomingEventsArray[indexPath.row].strHomeTeam
-//                cell.secondTeamName.text = upcomingEventsArray[indexPath.row].strAwayTeam
-                
                 let strTime = upcomingEventsArray[indexPath.row].strTime ?? ""
                 if(strTime != ""){
                     let timeArr = strTime.split(separator: ":")
                     cell.leagueTime.text = "\(timeArr[0]):\(timeArr[1])"
                 }
-                
-//                cell.leagueTime.text = upcomingEventsArray[indexPath.row].strTime
                 cell.leagueDate.text = upcomingEventsArray[indexPath.row].dateEvent
                 
                  let ImageURL = URL(string: upcomingEventsArray[indexPath.row].strThumb ?? "")
                 
                 cell.eventImg.kf.setImage(with: ImageURL)
-                
-                
-                // cell.firstTeamName.textColor  = UIColor.white
 
             }
             else{
                 //no upcoming events found
                 print("no upcoming events found")
-            noUpcomingEvents.image = UIImage(named: "noLeagues")
+                noUpcomingEvents.image = UIImage(named: "no-upcoming-events ")
 
                 //let the image be unhidden
                 noUpcomingEvents.isHidden = false
-                
             }
                 
             cell.contentView.layer.cornerRadius = 15.0
             
             // to make image  darker
-            let gradientLayer = CAGradientLayer()
-            
-            gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-            cell.eventImg.layer.addSublayer(gradientLayer)
+//            let gradientLayer = CAGradientLayer()
+//
+//            gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+//            cell.eventImg.layer.addSublayer(gradientLayer)
 
-            cell.contentView.backgroundColor = UIColor.lightGray
+            //cell.contentView.backgroundColor = UIColor.lightGray
 
             // cell corner
             cell.clipsToBounds = true

@@ -91,7 +91,7 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
                 }
             }else{
                 //   successful request with array of response equals 0
-                noLeaguesImage.image = UIImage(named: "noLeagues")
+                //noLeaguesImage.image = UIImage(named: "noLeagues")
             }
             noLeaguesImage.isHidden = false
         }
