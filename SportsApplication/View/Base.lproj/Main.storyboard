@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="h5A-7m-xBS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="h5A-7m-xBS">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -241,7 +241,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6Z-b7-Wjw">
-                                <rect key="frame" x="378.5" y="16" width="19.5" height="22"/>
+                                <rect key="frame" x="377.5" y="16" width="20.5" height="30"/>
                                 <state key="normal" image="heart" catalog="system"/>
                                 <connections>
                                     <action selector="favBtn:" destination="dY0-02-ikR" eventType="touchUpInside" id="s5o-3m-U1H"/>
@@ -461,13 +461,26 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lf3-Gf-aaF">
+                                <rect key="frame" x="339.5" y="16" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="GYY-dg-D9H"/>
+                                    <constraint firstAttribute="width" constant="30" id="IT0-Bb-aj0"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="Youtube"/>
+                                <connections>
+                                    <action selector="youtubeBtn:" destination="dY0-02-ikR" eventType="touchUpInside" id="6D8-6c-yXE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6b1-CI-zuO" firstAttribute="leading" secondItem="J3y-nM-k8a" secondAttribute="leading" constant="8" id="3wI-MY-amR"/>
                             <constraint firstItem="s6i-eC-Ce3" firstAttribute="top" secondItem="6b1-CI-zuO" secondAttribute="bottom" constant="16" id="4DT-V7-3xH"/>
                             <constraint firstItem="iD0-lG-Rvp" firstAttribute="top" secondItem="r1D-ok-fXI" secondAttribute="bottom" constant="8" id="5ao-BB-rap"/>
+                            <constraint firstItem="Lf3-Gf-aaF" firstAttribute="bottom" secondItem="Z6Z-b7-Wjw" secondAttribute="bottom" id="6oJ-DI-gD6"/>
                             <constraint firstAttribute="bottom" secondItem="iD0-lG-Rvp" secondAttribute="bottom" id="7ab-dD-5wd"/>
+                            <constraint firstItem="Z6Z-b7-Wjw" firstAttribute="leading" secondItem="Lf3-Gf-aaF" secondAttribute="trailing" constant="8" id="FZq-ox-lYz"/>
                             <constraint firstItem="Z6Z-b7-Wjw" firstAttribute="top" secondItem="J3y-nM-k8a" secondAttribute="top" constant="16" id="GR6-Xh-6if"/>
                             <constraint firstItem="FMC-DU-aOl" firstAttribute="leading" secondItem="J3y-nM-k8a" secondAttribute="leading" constant="16" id="GRd-2l-rKB"/>
                             <constraint firstItem="r1D-ok-fXI" firstAttribute="leading" secondItem="J3y-nM-k8a" secondAttribute="leading" constant="16" id="O2N-0c-ER2"/>
@@ -484,6 +497,7 @@
                             <constraint firstItem="J3y-nM-k8a" firstAttribute="trailing" secondItem="iD0-lG-Rvp" secondAttribute="trailing" constant="16" id="ndn-hU-Gcx"/>
                             <constraint firstItem="y6c-ak-x59" firstAttribute="leading" secondItem="J3y-nM-k8a" secondAttribute="leading" constant="16" id="nel-xy-xiH"/>
                             <constraint firstItem="s6i-eC-Ce3" firstAttribute="leading" secondItem="J3y-nM-k8a" secondAttribute="leading" constant="16" id="nzy-UL-CTf"/>
+                            <constraint firstItem="Lf3-Gf-aaF" firstAttribute="top" secondItem="Z6Z-b7-Wjw" secondAttribute="top" id="o1y-mh-4Sr"/>
                             <constraint firstItem="6b1-CI-zuO" firstAttribute="top" secondItem="y6c-ak-x59" secondAttribute="bottom" constant="8" id="qWm-rl-BK2"/>
                             <constraint firstItem="FMC-DU-aOl" firstAttribute="top" secondItem="J3y-nM-k8a" secondAttribute="top" constant="16" id="zgI-S8-4i5"/>
                         </constraints>
@@ -493,11 +507,14 @@
                     <navigationItem key="navigationItem" id="cpM-8u-InR"/>
                     <connections>
                         <outlet property="heartButton" destination="Z6Z-b7-Wjw" id="wN6-bv-1s8"/>
+                        <outlet property="latestEventLabel" destination="s6i-eC-Ce3" id="A1S-jv-35o"/>
                         <outlet property="latestEventsCollection" destination="100-El-Gze" id="mOQ-TG-IDX"/>
                         <outlet property="leagueName" destination="93x-bL-OWK" id="aNU-q1-OAn"/>
                         <outlet property="leaguesDetailsCollection" destination="6b1-CI-zuO" id="LZV-nJ-zWY"/>
                         <outlet property="noUpcomingEvents" destination="wdl-bt-tFG" id="cPl-l7-Mrh"/>
+                        <outlet property="teamLabel" destination="r1D-ok-fXI" id="by5-nH-1Qk"/>
                         <outlet property="teamsCollection" destination="iD0-lG-Rvp" id="2qJ-KO-hhy"/>
+                        <outlet property="upcomingEventLabel" destination="y6c-ak-x59" id="eSm-EU-uXC"/>
                         <outlet property="upcomingEvents" destination="y6c-ak-x59" id="ugh-lt-ett"/>
                     </connections>
                 </viewController>
@@ -550,26 +567,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R9a-Zr-WRK">
-                                                    <rect key="frame" x="292" y="10" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="Ato-Y8-Ff0"/>
-                                                        <constraint firstAttribute="height" constant="50" id="hYe-Na-JAV"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button" image="youtubeIcon"/>
-                                                    <connections>
-                                                        <action selector="youtubeBtn:" destination="LUX-x8-dGm" eventType="touchUpInside" id="ro5-vR-Cx4"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="vSl-Id-QmD" firstAttribute="leading" secondItem="KVP-uh-S2G" secondAttribute="trailing" constant="8" id="0Kx-xl-s9K"/>
-                                                <constraint firstItem="R9a-Zr-WRK" firstAttribute="centerY" secondItem="Wtk-oa-ODZ" secondAttribute="centerY" id="0jf-l8-LlU"/>
                                                 <constraint firstItem="KVP-uh-S2G" firstAttribute="leading" secondItem="Wtk-oa-ODZ" secondAttribute="leading" constant="8" id="GKt-E5-DEF"/>
                                                 <constraint firstItem="vSl-Id-QmD" firstAttribute="centerY" secondItem="Wtk-oa-ODZ" secondAttribute="centerY" id="IAD-ue-wUR"/>
                                                 <constraint firstItem="KVP-uh-S2G" firstAttribute="centerY" secondItem="Wtk-oa-ODZ" secondAttribute="centerY" id="d3W-i4-p4f"/>
-                                                <constraint firstAttribute="trailing" secondItem="R9a-Zr-WRK" secondAttribute="trailing" constant="8" id="vTN-id-Cc0"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="350" height="70"/>
@@ -643,15 +647,16 @@
             <point key="canvasLocation" x="131.8840579710145" y="93.75"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="chevron.left" catalog="system" width="46" height="64"/>
-        <image name="heart" catalog="system" width="64" height="58"/>
-        <image name="sport" width="24" height="24"/>
-        <image name="square.grid.2x2" catalog="system" width="64" height="56"/>
-        <image name="teams-background" width="626" height="401"/>
-        <image name="youtubeIcon" width="206" height="206"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="puk-Hq-wex"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <image name="Youtube" width="206" height="206"/>
+        <image name="chevron.left" catalog="system" width="96" height="128"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="sport" width="24" height="24"/>
+        <image name="square.grid.2x2" catalog="system" width="128" height="114"/>
+        <image name="teams-background" width="626" height="401"/>
+        <image name="youtubeIcon" width="206" height="206"/>
+    </resources>
 </document>

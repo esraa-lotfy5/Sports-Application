@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import Network
 
 class LeaguesViewController: UIViewController {
+    
+    //check connection
+    let monitor = NWPathMonitor()
+    let queue = DispatchQueue(label: "InternetConnectionMonitor")
+
 
     //  object of presenter
     var presenter : LeaguesPresenterProtocol!
@@ -21,6 +27,7 @@ class LeaguesViewController: UIViewController {
 
     //  assume by deafult we are in favourites screen
     var favLeagues : Bool = true
+    var url : String = ""
     
     @IBOutlet weak var sportLabel: UILabel!
     @IBOutlet weak var noLeaguesImage: UIImageView!
@@ -35,8 +42,7 @@ class LeaguesViewController: UIViewController {
         leaguesCollection.delegate = self
         leaguesCollection.dataSource = self
         
-        //  set label text
-        sportLabel.text = sportName
+        
         
         //  variables initializations
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -45,20 +51,21 @@ class LeaguesViewController: UIViewController {
         presenter = LeaguesPresenter(networkService: NetworkManager.delegate, localModel:CoreDataHandling(context: managedContext) , view: self)
         coreDataLeagues = presenter.fetchLeaguesFromCoreData()
         if(favLeagues){
+            //  set label text
+            sportLabel.text = "Favourites"
             print("You are in favourite leagues tab")
             backButton.isHidden = true
             coreDataLeagues = presenter.fetchLeaguesFromCoreData()
             if(coreDataLeagues.count == 0){
                 noLeaguesImage.isHidden = false
-                print("No favourites")
             }else{
                 noLeaguesImage.isHidden = true
-                print("User has favourites")
             }
             
         }else{
+            //  set label text
+            sportLabel.text = sportName
             let parameters = [ "s":sportName]
-            print("parameters: \(parameters)")
             presenter.getLeaguesListItems(urlID: 2, parameteres: parameters)
         }
         
@@ -89,15 +96,13 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
                     //  if there are no favourites
                     noLeaguesImage.image = UIImage(named: "noFavourites")
                 }
-            }else{
-                //   successful request with array of response equals 0
-                //noLeaguesImage.image = UIImage(named: "noLeagues")
             }
             noLeaguesImage.isHidden = false
         }
         return 0
     }
-    
+
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LeaguesCollectionViewCell
@@ -111,6 +116,8 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
             let imageURL = URL(string: responseResultArray[indexPath.row].strBadge ?? "")
             cell.leagugeImage.kf.setImage(with: imageURL)
             leagueCell.url = responseResultArray[indexPath.row].strYoutube ?? ""
+            
+            
         }else{
             //  if user offline ..
             if(coreDataLeagues.count != 0){
@@ -141,39 +148,39 @@ extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewData
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        print("inside prepare for segue in leagues\n")
         let leaguesDetailsViewController : LeaguesDetailsViewController = segue.destination as! LeaguesDetailsViewController
         //  to get selected cell
         let cell = sender as! UICollectionViewCell
         let indexPath = self.leaguesCollection!.indexPath(for: cell)
 
-        if(responseResultArray.count != 0){
-            leaguesDetailsViewController.league.idLeague = responseResultArray[indexPath?.row ?? -1].idLeague ?? ""
-            leaguesDetailsViewController.league.strLeague = responseResultArray[indexPath?.row ?? -1].strLeague ?? ""
-            leaguesDetailsViewController.league.strSport = responseResultArray[indexPath?.row ?? -1].strSport ?? ""
-            leaguesDetailsViewController.league.strBadge = responseResultArray[indexPath?.row ?? -1].strBadge ?? ""
-            leaguesDetailsViewController.league.strLogo = responseResultArray[indexPath?.row ?? -1].strLogo ?? ""
-            leaguesDetailsViewController.league.strYoutube = responseResultArray[indexPath?.row ?? -1].strYoutube ?? ""
-            leaguesDetailsViewController.league.strCountry = responseResultArray[indexPath?.row ?? -1].strCountry ?? ""
+                if(self.responseResultArray.count != 0){
+                    leaguesDetailsViewController.league.idLeague = self.responseResultArray[indexPath?.row ?? -1].idLeague ?? ""
+                    leaguesDetailsViewController.league.strLeague = self.responseResultArray[indexPath?.row ?? -1].strLeague ?? ""
+                    leaguesDetailsViewController.league.strSport = self.responseResultArray[indexPath?.row ?? -1].strSport ?? ""
+                    leaguesDetailsViewController.league.strBadge = self.responseResultArray[indexPath?.row ?? -1].strBadge ?? ""
+                    leaguesDetailsViewController.league.strLogo = self.responseResultArray[indexPath?.row ?? -1].strLogo ?? ""
+                    leaguesDetailsViewController.league.strYoutube = self.responseResultArray[indexPath?.row ?? -1].strYoutube ?? ""
+                    leaguesDetailsViewController.league.strCountry = self.responseResultArray[indexPath?.row ?? -1].strCountry ?? ""
         }else{
-            if(coreDataLeagues.count != 0){
-                leaguesDetailsViewController.league.idLeague = coreDataLeagues[indexPath?.row ?? -1].idLeague ?? ""
-                leaguesDetailsViewController.league.strLeague = coreDataLeagues[indexPath?.row ?? -1].strLeague ?? ""
-                leaguesDetailsViewController.league.strSport = coreDataLeagues[indexPath?.row ?? -1].strSport ?? ""
-                leaguesDetailsViewController.league.strBadge = coreDataLeagues[indexPath?.row ?? -1].strBadge ?? ""
-                leaguesDetailsViewController.league.strLogo = coreDataLeagues[indexPath?.row ?? -1].strLogo ?? ""
-                leaguesDetailsViewController.league.strYoutube = coreDataLeagues[indexPath?.row ?? -1].strYoutube ?? ""
-                leaguesDetailsViewController.league.strCountry = coreDataLeagues[indexPath?.row ?? -1].strCountry ?? ""
+                    if(self.coreDataLeagues.count != 0){
+                leaguesDetailsViewController.league.idLeague = self.coreDataLeagues[indexPath?.row ?? -1].idLeague ?? ""
+                        leaguesDetailsViewController.league.strLeague = self.coreDataLeagues[indexPath?.row ?? -1].strLeague ?? ""
+                        leaguesDetailsViewController.league.strSport = self.coreDataLeagues[indexPath?.row ?? -1].strSport ?? ""
+                        leaguesDetailsViewController.league.strBadge = self.coreDataLeagues[indexPath?.row ?? -1].strBadge ?? ""
+                        leaguesDetailsViewController.league.strLogo = self.coreDataLeagues[indexPath?.row ?? -1].strLogo ?? ""
+                        leaguesDetailsViewController.league.strYoutube = self.coreDataLeagues[indexPath?.row ?? -1].strYoutube ?? ""
+                        leaguesDetailsViewController.league.strCountry = self.coreDataLeagues[indexPath?.row ?? -1].strCountry ?? ""
             }
         }
         leaguesDetailsViewController.allLeaguesScreen = self
         leaguesDetailsViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        
+
         self.present(leaguesDetailsViewController, animated: true)
+                
+        }
     }
     
-}
+//}
 
 extension LeaguesViewController : LeaguesViewControllerProtocol{
     func renderCollectionViewFromNetwork(response : Any ,isCountriesEqualNull : Bool){
@@ -182,9 +189,6 @@ extension LeaguesViewController : LeaguesViewControllerProtocol{
             responseResultArray = []
         }else{
             responseResultArray = (response as! LeaguesResponse).countries
-            print("reponseArray.count : \(responseResultArray.count)")
-            print("youtube link is : \(responseResultArray[1].strYoutube)")
-            
         }
         self.leaguesCollection.reloadData()
     }
@@ -207,5 +211,7 @@ extension LeaguesViewController : LeaguesViewControllerProtocol{
         }
         self.leaguesCollection.reloadData()
     }
-}
+    }
+    
+
 

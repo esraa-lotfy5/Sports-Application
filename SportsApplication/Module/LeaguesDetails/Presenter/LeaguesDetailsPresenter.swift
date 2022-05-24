@@ -34,6 +34,7 @@ extension LeaguesDetailsPresenter : LeaguesDetailsPresenterProtocol{
         networkDelegate.fetchLists(urlID: urlID, paramerters: parameteres){[weak self] (result,error,isCountriesEqualNull)  in
                    guard result != nil else{
                        print("From leagues details presenter: Response = nil")
+                      self?.view.renderCollectionViewFromNetwork(response: "",error: true, isCountriesEqualNull: isCountriesEqualNull)
                        return
                    }
             switch (urlID) {
@@ -41,7 +42,7 @@ extension LeaguesDetailsPresenter : LeaguesDetailsPresenterProtocol{
                     self?.view.renderTeamsCollectionViewFromNetwork(response: result!, isCountriesEqualNull: isCountriesEqualNull)
                     break
                 case 4:     // events
-                    self?.view.renderCollectionViewFromNetwork(response: result!, isCountriesEqualNull: isCountriesEqualNull)
+                    self?.view.renderCollectionViewFromNetwork(response: result!,error: false, isCountriesEqualNull: isCountriesEqualNull)
                     break
                 default:
                     print("false urlID")

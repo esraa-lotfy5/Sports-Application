@@ -10,6 +10,8 @@ import UIKit
 
 class LeaguesDetailsViewController: UIViewController {
     
+   
+    
     //  object of presenter
     var presenter : LeaguesDetailsPresenterProtocol!
     
@@ -43,6 +45,34 @@ class LeaguesDetailsViewController: UIViewController {
     @IBOutlet weak var leagueName: UILabel!
     @IBOutlet weak var upcomingEvents: UILabel!
     @IBOutlet weak var heartButton: UIButton!
+    
+    @IBOutlet weak var latestEventLabel: UILabel!
+    @IBOutlet weak var upcomingEventLabel: UILabel!
+    @IBOutlet weak var teamLabel: UILabel!
+    
+    
+    
+    @IBAction func youtubeBtn(_ sender: UIButton) {
+        var youtubeUrl =  NSURL(string:"https://\(league.strYoutube ?? "")")! as URL
+              print(youtubeUrl)
+              if
+                  UIApplication.shared.canOpenURL(youtubeUrl){
+                  UIApplication.shared.open(youtubeUrl, options: [:], completionHandler: nil)
+                  print("link exist")
+                  print(youtubeUrl)
+                  
+                  
+              } else{
+                  youtubeUrl = NSURL(string:"https://www.youtube.com/watch?v=\(league.strYoutube ?? "")")! as URL
+                  print("no link")
+                  print(youtubeUrl)
+
+                  UIApplication.shared.open(youtubeUrl, options: [:], completionHandler: nil)
+
+              }
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,61 +145,71 @@ class LeaguesDetailsViewController: UIViewController {
 
 
 extension LeaguesDetailsViewController : LeaguesDetailsViewControllerProtocol{
-    func renderCollectionViewFromNetwork(response : Any ,isCountriesEqualNull : Bool){
-//        if(isCountriesEqualNull){
-//           _ = (response as! NullReponse)
-//           responseResultArray = []
-//       }else{
+    
+    //  to render events from network
+    func renderCollectionViewFromNetwork(response : Any, error : Bool ,isCountriesEqualNull : Bool){
+
+        //  if no internet connection exists
+        if error  {
+            //  make labels  hidden to better user experience
+            latestEventLabel.isHidden = true
+            upcomingEventLabel.isHidden = true
+            teamLabel.isHidden = true
+            noUpcomingEvents.isHidden = true
+            //alert
+            let alert = UIAlertController(title: "", message: "No Internet Connection", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action) in
+            self.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
+          }
+        
+        // if user has a good internet connection
+        else{
+            //  fetch events from network
             responseResultArray = (response as! EventsResponse).events
-           print("reponseArray.count : \(responseResultArray.count)")
-            
+            //  get today date
             let formatter = DateFormatter()
             //2016-12-08 03:37:22 +0000
             formatter.dateFormat = "yyyy-MM-dd"
             let now = Date()
-            let dateString = formatter.string(from:now)
-            print("Date today is: \(dateString)")
-            
-//            guard let date1 = dateString1.toDate() else {
-//                       print("dateString1: \(dateString1) | Failed to cast to \"dd/MM/yyyy  hh:mm\"")
-//                       return
-//                   }
+            _ = formatter.string(from:now)
+//            print("Date today is: \(dateString)")
+            // comparing current date with event date to fetch upcoming and latest events
             responseResultArray.forEach { i in
+            // to convert event date string to date
             guard let eventDate = i.dateEvent?.toDate()
                 else{
-                    print("Failed to convert")
+                    //  Failed to convert
                     return
                 }
                 if eventDate >= now{
                     upcomingEventsArray.append(i)
                 }
-                //if eventDate < now
                 else
                 {
                     latestEventsArray.append(i)
                 }
-                //compare and put into array
             }
-            print("upcoming array is: \(upcomingEventsArray)")
-            print("latest array is: \(latestEventsArray)")
-            //}
-            self.latestEventsCollection.reloadData()
+        self.latestEventsCollection.reloadData()
     }
+}
     
+    //  to render teams from network
     func renderTeamsCollectionViewFromNetwork(response : Any, isCountriesEqualNull : Bool){
         let allTeams = (response as! TeamsResponse).teams
         for team in allTeams{
+            //  to get league's teams from all teams
             if(team.idLeague == league.idLeague){
                 teamsArray.append(team)
             }
         }
-        print("all teams ReponseArray.count : \(allTeams.count)")
-        print("league teams ReponseArray.count : \(teamsArray.count)")
         teamsCollection.reloadData()
     }
 }
 
 extension String {
+    //  function to convert string to date
     func toDate() -> Date? {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -185,19 +225,16 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
         
         switch collectionView {
                case leaguesDetailsCollection:
+                //  there is upcoming events
                 if upcomingEventsArray.count != 0 {
-                    print("inside if, there is upcoming events")
-                    //let the image be hidden
-                    //"no upcoming events"
-                    //noUpcomingEvents.image = UIImage(named: "no upcoming events")
                     noUpcomingEvents.isHidden = true
                     return upcomingEventsArray.count
                 }
-                else{
-                    print("inside else, there is no upcoming events")
-
+                else{   //  there is no upcoming events
                    // let the image be unhidden
                     noUpcomingEvents.image = UIImage(named: "no-upcoming-events ")
+                    noUpcomingEvents.clipsToBounds = true
+                    noUpcomingEvents.layer.cornerRadius = 25
                     noUpcomingEvents.isHidden = false
                       }
                case latestEventsCollection:
@@ -205,7 +242,7 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
                case teamsCollection:
                     return teamsArray.count
                default:
-                   return 6
+                   return 0
                }
         return 0
     }
@@ -216,39 +253,23 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
         case leaguesDetailsCollection:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LeaguesDetailsCollectionViewCell
             
-            if upcomingEventsArray.count != 0{
-                //let the image be unhidden
+            
+            if upcomingEventsArray.count != 0{  // we have upcoming events
+                //let the no events image be unhidden
                 noUpcomingEvents.isHidden = true
-                let strTime = upcomingEventsArray[indexPath.row].strTime ?? ""
-                if(strTime != ""){
+                let strTime = upcomingEventsArray[indexPath.row].strTime ?? ""  //  00:00:00
+                if(strTime != ""){  // to remove seconds from the time
                     let timeArr = strTime.split(separator: ":")
                     cell.leagueTime.text = "\(timeArr[0]):\(timeArr[1])"
                 }
                 cell.leagueDate.text = upcomingEventsArray[indexPath.row].dateEvent
                 
                  let ImageURL = URL(string: upcomingEventsArray[indexPath.row].strThumb ?? "")
-                
                 cell.eventImg.kf.setImage(with: ImageURL)
 
             }
-            else{
-                //no upcoming events found
-                print("no upcoming events found")
-                noUpcomingEvents.image = UIImage(named: "no-upcoming-events ")
-
-                //let the image be unhidden
-                noUpcomingEvents.isHidden = false
-            }
                 
             cell.contentView.layer.cornerRadius = 15.0
-            
-            // to make image  darker
-//            let gradientLayer = CAGradientLayer()
-//
-//            gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-//            cell.eventImg.layer.addSublayer(gradientLayer)
-
-            //cell.contentView.backgroundColor = UIColor.lightGray
 
             // cell corner
             cell.clipsToBounds = true
@@ -266,29 +287,20 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
                 let timeArr = strTime.split(separator: ":")
                 cell2.time.text = "\(timeArr[0]):\(timeArr[1])"
             }
-            
+                    
             cell2.date.text = latestEventsArray[indexPath.row].dateEvent
-                           
-       let ImageURL = URL(string: latestEventsArray[indexPath.row].strThumb ?? "")
-                           
-       cell2.eventImg.kf.setImage(with: ImageURL)
-            
+                                   
+            let ImageURL = URL(string: latestEventsArray[indexPath.row].strThumb ?? "")
+            cell2.eventImg.kf.setImage(with: ImageURL)
+                    
             cell2.contentView.layer.cornerRadius = 15.0
-                     
-                     // to make image  darker
-        let gradientLayer = CAGradientLayer()
-                     
-    gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-    cell2.eventImg.layer.addSublayer(gradientLayer)
-        cell2.contentView.backgroundColor = UIColor.lightGray
-                     
-     // cell corner
-      cell2.clipsToBounds = true
-      cell2.layer.cornerRadius = 25
-      return cell2
+
+         // cell corner
+          cell2.clipsToBounds = true
+          cell2.layer.cornerRadius = 25
+          return cell2
             
     case teamsCollection:
-        print("We are in drawing team cells")
         let cell3 = collectionView.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath) as! TeamsCollectionViewCell
                                  
         cell3.teamName.text = teamsArray[indexPath.row].strTeam
@@ -315,12 +327,9 @@ extension LeaguesDetailsViewController : UICollectionViewDelegate, UICollectionV
         let collectionViewSize = collectionView.frame.size.width - padding
         
         if (collectionView == leaguesDetailsCollection || collectionView == latestEventsCollection) {
-            
-                      return CGSize(width: collectionViewSize/1, height: 150)
+          return CGSize(width: collectionViewSize/1, height: 150)
         }
-        
         return CGSize(width: collectionViewSize/3, height: 140)
-          
        }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
