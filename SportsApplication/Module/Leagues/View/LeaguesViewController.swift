@@ -33,6 +33,33 @@ class LeaguesViewController: UIViewController {
     @IBOutlet weak var noLeaguesImage: UIImageView!
     @IBOutlet weak var leaguesCollection: UICollectionView!
     @IBOutlet weak var backButton: UIButton!
+    
+    override func viewDidAppear(_ animated: Bool){
+        //super.viewDidAppear(true)
+        //  variables initializations
+        
+        coreDataLeagues = presenter.fetchLeaguesFromCoreData()
+        if(favLeagues){
+            //  set label text
+            sportLabel.text = "Favourites"
+            print("You are in favourite leagues tab")
+            backButton.isHidden = true
+            coreDataLeagues = presenter.fetchLeaguesFromCoreData()
+            if(coreDataLeagues.count == 0){
+                noLeaguesImage.isHidden = false
+            }else{
+                noLeaguesImage.isHidden = true
+            }
+            
+        }else{
+            //  set label text
+            sportLabel.text = sportName
+            let parameters = [ "s":sportName]
+            presenter.getLeaguesListItems(urlID: 2, parameteres: parameters)
+        }
+        self.leaguesCollection.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,8 +68,6 @@ class LeaguesViewController: UIViewController {
         //  collection view protocol conformation
         leaguesCollection.delegate = self
         leaguesCollection.dataSource = self
-        
-        
         
         //  variables initializations
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -68,13 +93,14 @@ class LeaguesViewController: UIViewController {
             let parameters = [ "s":sportName]
             presenter.getLeaguesListItems(urlID: 2, parameteres: parameters)
         }
-        
     }
     
     @IBAction func backButton(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
 }
+
+
 
 
 extension LeaguesViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
