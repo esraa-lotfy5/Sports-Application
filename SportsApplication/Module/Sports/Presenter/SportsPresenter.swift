@@ -10,7 +10,6 @@ import Foundation
 
 class SportsPresenter : SportsPresenterProtocol{
     var networkManager : NetworkManagerProtocol!
-    var responseResult : SportsResponse!
     weak var view : SportsViewControllerProtocol!
     
     init(networkService : NetworkManager, view : SportsViewControllerProtocol){

@@ -307,7 +307,6 @@
 				09C3FBE828398C9900FB1B87 /* Teams */,
 				A003D12528313DE9003E0563 /* LeaguesDetails */,
 				0912230E282EBA360040A84C /* Leagues */,
-				A0CF1C89282C48AE00E3D633 /* FavouriteLeagues */,
 				A0CF1C84282C444B00E3D633 /* Sports */,
 			);
 			path = Module;
@@ -369,29 +368,6 @@
 				09B72FF1282DD40C00B86DE1 /* SportsPresenterProtocol.swift */,
 			);
 			path = Presenter;
-			sourceTree = "<group>";
-		};
-		A0CF1C89282C48AE00E3D633 /* FavouriteLeagues */ = {
-			isa = PBXGroup;
-			children = (
-				A0CF1C8B282C48D100E3D633 /* View */,
-				A0CF1C8A282C48C000E3D633 /* Presenter */,
-			);
-			path = FavouriteLeagues;
-			sourceTree = "<group>";
-		};
-		A0CF1C8A282C48C000E3D633 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		A0CF1C8B282C48D100E3D633 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		B32C95B2D4EEE97FDFAE5407 /* Frameworks */ = {

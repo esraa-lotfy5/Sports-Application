@@ -33,7 +33,7 @@ class NetworkManagerTests: XCTestCase {
             XCTAssertEqual(sports.count, 34, "error in API items' count") // true : 34
             expectationOject.fulfill()
        }
-       waitForExpectations(timeout: 5, handler: nil)
+       waitForExpectations(timeout: 15, handler: nil)
    }
     
     
@@ -84,6 +84,6 @@ class NetworkManagerTests: XCTestCase {
               XCTAssertEqual(events.count, 100, "error in API items' count") // true : 100
               expectationOject.fulfill()
          }
-         waitForExpectations(timeout: 15, handler: nil)
+         waitForExpectations(timeout: 20, handler: nil)
      }
 }

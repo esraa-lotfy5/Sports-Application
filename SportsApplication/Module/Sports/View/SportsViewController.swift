@@ -44,7 +44,6 @@ class SportsViewController: UIViewController{
     presenter = SportsPresenter(networkService: NetworkManager.delegate, view: self)
         presenter.getSportsListItems(urlID: 0)
         
-        //
     }
     
     @IBAction func changeCollectionViewStyle(_ sender: UIButton) {
