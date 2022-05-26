@@ -1,5 +1,6 @@
 # Sports-Application
-Our sports application displays all sports' currently leagues with thier latest and upcoming events with thier teams.
+Our sports application displays all sports' current leagues with their latest and upcoming events with their teams.
+Users can add specific leagues to favorites section to display it in offline mode.
 
 ## Features
 - Display all sports in list and grid view.
