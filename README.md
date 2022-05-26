@@ -10,7 +10,7 @@ Our sports application displays all sports' currently leagues with thier latest 
 - Display all teams for specific league.
 - Display team details.
 - User can add/ delete specific leagues to favourites.
-- user can see his favourite leagues offline.
+- User can see his favourite leagues offline.
 
 ## Tools and Libraries
 - MVP Architecture design pattern.
@@ -22,8 +22,8 @@ Our sports application displays all sports' currently leagues with thier latest 
 - Handling application in offline and online mode.
 
 ## Team members
-- Esraa Lotfy [Esraa Lotfy](https://github.com/esraa-lotfy5).
-- Nihal Yasser [Nihal Yasser](https://github.com/Nihalkhamis).
+- Esraa Lotfy [@Esraa Lotfy](https://github.com/esraa-lotfy5).
+- Nihal Yasser [@Nihal Yasser](https://github.com/Nihalkhamis).
 
 ## Samples
 1- Home screen
@@ -40,7 +40,7 @@ Our sports application displays all sports' currently leagues with thier latest 
 - Latest events.
 - Teams of the league.
 
-![League Details](https://user-images.githubusercontent.com/83614911/170567489-1e40b502-171e-40a4-8ab3-956e45c09ea8.png)Team
+![League Details](https://user-images.githubusercontent.com/83614911/170567489-1e40b502-171e-40a4-8ab3-956e45c09ea8.png)
 
 4- Team Details Screen 
 
